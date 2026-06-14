@@ -32,11 +32,16 @@
     .hero { position: relative; text-align: center; padding: 76px 24px 64px; overflow: hidden; }
     .logo-wrap { position: relative; display: inline-block; margin-bottom: 14px; }
     .logo-glow {
-      position: absolute; inset: -45%; z-index: 0; border-radius: 50%;
-      background: radial-gradient(circle, rgba(244,165,35,0.45) 0%, rgba(244,165,35,0.12) 42%, rgba(244,165,35,0) 70%);
+      position: absolute; inset: -6px; z-index: 0; border-radius: 34px;
+      background: rgba(244,165,35,0.5);
+      filter: blur(32px);
       animation: breathe 5s ease-in-out infinite;
     }
-    .logo { position: relative; z-index: 1; width: 124px; height: auto; display: block; }
+    .logo {
+      position: relative; z-index: 1; width: 124px; height: auto; display: block;
+      border-radius: 28px;
+      box-shadow: 0 10px 30px -10px rgba(0,0,0,0.55);
+    }
     @keyframes breathe { 0%, 100% { opacity: 0.8; } 50% { opacity: 1; } }
     @media (prefers-reduced-motion: reduce) { .logo-glow { animation: none; } }
 
