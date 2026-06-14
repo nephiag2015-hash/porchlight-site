@@ -99,22 +99,22 @@
     section p.intro + p.intro { margin-top: 18px; }
 
     /* Pillars — feature rows with photos */
-    .pillars { margin-top: 10px; display: flex; flex-direction: column; gap: 26px; }
+    .ways .container { max-width: 940px; }
+    .pillars { margin-top: 16px; display: flex; flex-direction: column; gap: 28px; }
     .pillar {
-      display: flex; align-items: stretch;
+      display: flex; align-items: stretch; min-height: 280px;
       background: #20203a; border: 1px solid #2a2a4e;
       border-radius: 18px; overflow: hidden;
     }
-    .pillar .pic { flex: 0 0 42%; }
+    .pillar .pic { flex: 0 0 46%; }
     .pillar .pic img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .pillar .body { flex: 1; min-width: 0; padding: 28px 30px; align-self: center; }
-    .pillar:nth-child(even) { flex-direction: row-reverse; }
+    .pillar .body { flex: 1; min-width: 0; padding: 38px 46px; align-self: center; }
     .pillar-tag {
-      display: block; text-transform: uppercase; letter-spacing: 2px;
-      font-size: 0.72rem; font-weight: 600; color: #f4a523; margin-bottom: 7px;
+      display: block; text-transform: uppercase; letter-spacing: 2.5px;
+      font-size: 0.8rem; font-weight: 600; color: #f4a523; margin-bottom: 10px;
     }
-    .pillar h3 { font-size: 1.3rem; font-weight: 500; color: #f5f5fa; margin-bottom: 8px; }
-    .pillar p { color: #b6b6cc; font-size: 0.98rem; }
+    .pillar h3 { font-size: 1.65rem; font-weight: 500; color: #f5f5fa; margin-bottom: 12px; }
+    .pillar p { color: #c2c2d6; font-size: 1.1rem; line-height: 1.65; }
 
     /* Built for real life */
     .notes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 6px; }
@@ -135,9 +135,9 @@
     @media (max-width: 560px) {
       .hero h1 { font-size: 2.3rem; }
       section h2 { font-size: 1.75rem; }
-      .pillar, .pillar:nth-child(even) { flex-direction: column; }
-      .pillar .pic { flex: none; height: 200px; }
-      .pillar .body { padding: 24px; }
+      .pillar { flex-direction: column; min-height: 0; }
+      .pillar .pic { flex: none; height: 220px; }
+      .pillar .body { padding: 28px 24px; }
     }
   </style>
 </head>
