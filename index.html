@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Porch Light — Spontaneous calls with the people who matter</title>
-  <meta name="description" content="Porch Light helps you have spontaneous phone calls with close friends. Turn your light on when you're free, get a knock, and just talk. No scheduling, no small talk over text.">
+  <title>Porch Light — Stay close to the people who matter</title>
+  <meta name="description" content="Porch Light is a simple way to have real phone calls with your closest friends and family. No scheduling, no small talk over text, no audience — just genuine connection.">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -12,23 +12,40 @@
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background: #1a1a2e;
       color: #e0e0e0;
-      line-height: 1.6;
+      line-height: 1.65;
     }
     a { color: #f4a523; text-decoration: none; }
     a:hover { text-decoration: underline; }
-    .container { max-width: 720px; margin: 0 auto; padding: 0 20px; }
+    .container { max-width: 720px; margin: 0 auto; padding: 0 22px; }
 
     /* Hero */
     .hero {
+      position: relative;
       text-align: center;
-      padding: 72px 20px 56px;
+      padding: 64px 22px 56px;
+      overflow: hidden;
     }
-    .hero img { width: 110px; margin-bottom: 20px; }
-    .hero h1 { font-size: 2.75rem; color: #f4a523; margin-bottom: 12px; }
-    .hero .tagline { font-size: 1.35rem; color: #c0c0d0; margin-bottom: 8px; }
+    .hero .lantern { width: 180px; height: auto; margin-bottom: 8px; }
+    .wordmark {
+      display: block;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      font-size: 0.85rem;
+      color: #f4a523;
+      margin-bottom: 18px;
+    }
+    .hero h1 {
+      font-size: 2.6rem;
+      line-height: 1.2;
+      color: #f3f3f7;
+      margin: 0 auto 18px;
+      max-width: 560px;
+    }
     .hero .lede {
-      font-size: 1.1rem; color: #a0a0b8;
-      max-width: 520px; margin: 0 auto 36px;
+      font-size: 1.15rem;
+      color: #a8a8c0;
+      max-width: 520px;
+      margin: 0 auto 36px;
     }
 
     /* App Store button */
@@ -39,48 +56,52 @@
       font-weight: 600; font-size: 1.05rem;
     }
     .store-btn:hover { text-decoration: none; background: #ffb733; }
-    .store-btn svg { width: 26px; height: 26px; fill: #1a1a2e; }
-    .coming-soon { display: block; margin-top: 14px; color: #8b8b9e; font-size: 0.9rem; }
+    .store-btn svg { width: 24px; height: 24px; fill: #1a1a2e; }
+    .coming-soon { display: block; margin-top: 14px; color: #8b8b9e; font-size: 0.88rem; }
 
     /* Sections */
-    section { padding: 48px 0; border-top: 1px solid #2a2a4e; }
+    section { padding: 52px 0; border-top: 1px solid #2a2a4e; }
     section h2 {
-      font-size: 1.8rem; color: #f4a523;
-      margin-bottom: 16px; text-align: center;
+      font-size: 1.85rem; color: #f3f3f7;
+      margin-bottom: 18px; text-align: center;
+      line-height: 1.25;
     }
+    section h2 .accent { color: #f4a523; }
     section p.intro {
-      color: #a0a0b8; max-width: 560px;
-      margin: 0 auto 32px; text-align: center;
+      color: #a8a8c0; max-width: 580px;
+      margin: 0 auto; text-align: center; font-size: 1.08rem;
     }
+    section p.intro + p.intro { margin-top: 16px; }
 
-    /* Steps */
-    .steps { display: flex; flex-direction: column; gap: 24px; max-width: 520px; margin: 0 auto; }
-    .step { display: flex; gap: 18px; align-items: flex-start; }
-    .step .num {
-      flex: 0 0 40px; width: 40px; height: 40px;
-      background: #2a2a4e; color: #f4a523; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 700; font-size: 1.1rem;
-    }
-    .step h3 { color: #e0e0e0; font-size: 1.15rem; margin-bottom: 4px; }
-    .step p { color: #a0a0b8; }
-
-    /* Feature cards */
-    .features { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .card {
+    /* Pillars */
+    .pillars { margin-top: 8px; display: flex; flex-direction: column; gap: 22px; }
+    .pillar {
+      display: flex; gap: 20px; align-items: flex-start;
       background: #20203a; border: 1px solid #2a2a4e;
-      border-radius: 14px; padding: 22px;
+      border-radius: 16px; padding: 24px;
     }
-    .card h3 { color: #f4a523; font-size: 1.1rem; margin-bottom: 8px; }
-    .card p { color: #a0a0b8; font-size: 0.97rem; }
-    @media (max-width: 560px) { .features { grid-template-columns: 1fr; } }
+    .pillar .icon {
+      flex: 0 0 56px; width: 56px; height: 56px;
+      background: #181830; border: 1px solid #33335a; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .pillar .icon svg { width: 30px; height: 30px; }
+    .pillar h3 { color: #f4a523; font-size: 1.25rem; margin-bottom: 6px; }
+    .pillar p { color: #b0b0c6; }
 
-    /* Why */
-    .why p { color: #c0c0d0; max-width: 560px; margin: 0 auto 16px; text-align: center; font-size: 1.05rem; }
+    /* Small "built for real life" row */
+    .notes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 4px; }
+    .note { text-align: center; }
+    .note h4 { color: #e0e0e0; font-size: 1rem; margin-bottom: 4px; }
+    .note p { color: #8f8fa6; font-size: 0.92rem; }
+    @media (max-width: 560px) { .notes { grid-template-columns: 1fr; gap: 22px; } }
+
+    /* Closing CTA */
+    .cta { text-align: center; }
 
     /* Footer */
     footer {
-      text-align: center; padding: 40px 20px;
+      text-align: center; padding: 40px 22px;
       border-top: 1px solid #2a2a4e; color: #8b8b9e; font-size: 0.9rem;
     }
     footer .links { margin-bottom: 12px; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
@@ -90,10 +111,37 @@
 
   <header class="hero">
     <div class="container">
-      <img src="porch-light-icon.png" alt="Porch Light icon">
-      <h1>Porch Light</h1>
-      <p class="tagline">Keep the light on.</p>
-      <p class="lede">Spontaneous phone calls with the people who matter — no scheduling, no endless texting. Turn your light on when you're free, and let friends knock.</p>
+      <!-- Glowing porch lantern -->
+      <svg class="lantern" viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A glowing porch lantern">
+        <defs>
+          <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#f4a523" stop-opacity="0.55"/>
+            <stop offset="42%" stop-color="#f4a523" stop-opacity="0.16"/>
+            <stop offset="100%" stop-color="#f4a523" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="flame" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#fff3d6"/>
+            <stop offset="100%" stop-color="#f4a523"/>
+          </linearGradient>
+        </defs>
+        <circle cx="100" cy="108" r="118" fill="url(#glow)"/>
+        <circle cx="100" cy="22" r="6" fill="none" stroke="#d9a94e" stroke-width="3"/>
+        <line x1="100" y1="28" x2="100" y2="36" stroke="#d9a94e" stroke-width="3"/>
+        <path d="M84 36 H116 L128 54 H72 Z" fill="#d9a94e"/>
+        <path d="M78 54 H122 L128 150 H72 Z" fill="#241f33" stroke="#d9a94e" stroke-width="3" stroke-linejoin="round"/>
+        <line x1="91" y1="54" x2="88" y2="150" stroke="#d9a94e" stroke-width="2"/>
+        <line x1="109" y1="54" x2="112" y2="150" stroke="#d9a94e" stroke-width="2"/>
+        <line x1="74" y1="103" x2="126" y2="103" stroke="#d9a94e" stroke-width="2"/>
+        <path d="M100 86 C 113 104, 110 124, 100 128 C 90 124, 87 104, 100 86 Z" fill="url(#flame)"/>
+        <ellipse cx="100" cy="114" rx="4" ry="8" fill="#fff3d6"/>
+        <path d="M72 150 H128 L122 164 H78 Z" fill="#d9a94e"/>
+        <line x1="100" y1="164" x2="100" y2="172" stroke="#d9a94e" stroke-width="3"/>
+        <circle cx="100" cy="175" r="4" fill="#d9a94e"/>
+      </svg>
+
+      <span class="wordmark">Porch Light</span>
+      <h1>Stay close to the people who matter.</h1>
+      <p class="lede">A simple way to have real phone calls with your closest friends and family — no scheduling, no small talk over text, no audience. Just connection.</p>
       <a class="store-btn" href="https://apps.apple.com/us/app/nephi-gomez/id6757113354">
         <svg viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
         Download on the App Store
@@ -102,79 +150,104 @@
     </div>
   </header>
 
-  <section class="about">
+  <section class="problem">
     <div class="container">
-      <h2>Remember just knocking on a friend's door?</h2>
-      <p class="intro">Porch Light brings that back. When you're free to talk, you turn your porch light on. Friends can see who's around and send a "knock." Answer it and you're instantly on a call. When your light's off, no one bothers you — simple as that.</p>
+      <h2>We're more connected than ever — <span class="accent">and somehow further apart.</span></h2>
+      <p class="intro">Life gets full. You think of someone you care about, but you never quite know if it's a good time to call — so you don't. Weeks slip by. Months.</p>
+      <p class="intro">And too many of us, when a hard moment comes, aren't sure who we'd even pick up the phone to call. Porch Light was built to change that.</p>
     </div>
   </section>
 
-  <section class="how">
+  <section class="ways">
     <div class="container">
-      <h2>How it works</h2>
-      <div class="steps">
-        <div class="step">
-          <div class="num">1</div>
+      <h2>Three simple ways to <span class="accent">stay connected</span></h2>
+      <div class="pillars">
+
+        <div class="pillar">
+          <div class="icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="#f4a523" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+              <line x1="24" y1="6" x2="24" y2="10"/>
+              <path d="M19 14 H29 L32 20 H16 Z"/>
+              <path d="M18 20 H30 L32 38 H16 Z"/>
+              <path d="M24 25 C 29 30, 28 35, 24 37 C 20 35, 19 30, 24 25 Z" fill="#f4a523" stroke="none"/>
+            </svg>
+          </div>
           <div>
-            <h3>Turn your light on</h3>
-            <p>One tap signals to your friends that you're free for a call right now.</p>
+            <h3>Porch Light</h3>
+            <p>Turn your light on when you're free to talk, and your friends can see you're around. Reaching out never feels like an interruption — no more guessing, no more bad timing.</p>
           </div>
         </div>
-        <div class="step">
-          <div class="num">2</div>
+
+        <div class="pillar">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#f4a523" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+              <path d="M23 4v6h-6"/>
+              <path d="M1 20v-6h6"/>
+              <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10"/>
+              <path d="M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+            </svg>
+          </div>
           <div>
-            <h3>Get a knock</h3>
-            <p>A friend taps your light, and your phone rings. No texting back and forth to find a good time.</p>
+            <h3>Auto Call</h3>
+            <p>Good intentions fade. Auto Call sets up a recurring conversation at a frequency you choose and rings you both when you're available — so staying close actually happens, instead of slipping away.</p>
           </div>
         </div>
-        <div class="step">
-          <div class="num">3</div>
+
+        <div class="pillar">
+          <div class="icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="#f4a523" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+              <rect x="16" y="8" width="18" height="32" rx="2"/>
+              <circle cx="30" cy="24" r="1.6" fill="#f4a523" stroke="none"/>
+              <path d="M11 18 Q8 24 11 30"/>
+              <path d="M6 14 Q2 24 6 34"/>
+            </svg>
+          </div>
           <div>
-            <h3>Just talk</h3>
-            <p>Pick up for a real voice call. Spontaneous, low-pressure, and actually human.</p>
+            <h3>Knock</h3>
+            <p>Some moments can't wait. One tap on Knock connects you with someone who cares, within minutes — because everyone deserves to have someone to call.</p>
           </div>
         </div>
+
       </div>
     </div>
   </section>
 
-  <section class="feats">
+  <section class="not-social">
     <div class="container">
-      <h2>What's inside</h2>
-      <div class="features">
-        <div class="card">
-          <h3>Availability signals</h3>
-          <p>Your porch light shows friends exactly when you're open to a call — and hides you when you're not.</p>
+      <h2>No posts. No likes. <span class="accent">No strangers.</span></h2>
+      <p class="intro">Porch Light isn't social media. There's no feed to perform for, no audience, no followers to chase. Just honest, one-on-one conversation with the handful of people who actually matter to you.</p>
+    </div>
+  </section>
+
+  <section class="real-life">
+    <div class="container">
+      <h2>Built for <span class="accent">real life</span></h2>
+      <div class="notes">
+        <div class="note">
+          <h4>Private by design</h4>
+          <p>Your location stays on your device. No call recordings. We never sell your data.</p>
         </div>
-        <div class="card">
-          <h3>Knocks &amp; calls</h3>
-          <p>Tap a friend's light to ring them. Real voice calls, connected right inside the app.</p>
+        <div class="note">
+          <h4>Your circles</h4>
+          <p>Group your people — family, close friends, your crew — so the right folks know you're around.</p>
         </div>
-        <div class="card">
-          <h3>Circles</h3>
-          <p>Group your people — close friends, family, the crew — so the right folks know you're around.</p>
-        </div>
-        <div class="card">
-          <h3>Auto Porch Light</h3>
-          <p>Your light turns on when you get home and off when you're driving or in a meeting — automatically.</p>
-        </div>
-        <div class="card">
-          <h3>Quiet hours</h3>
+        <div class="note">
+          <h4>Quiet hours</h4>
           <p>Set the times you never want to be disturbed. Your light stays off, no exceptions.</p>
         </div>
-        <div class="card">
-          <h3>Private by design</h3>
-          <p>Location stays on your device. No call recordings. We never sell your data.</p>
-        </div>
       </div>
     </div>
   </section>
 
-  <section class="why">
+  <section class="cta">
     <div class="container">
-      <h2>Why Porch Light?</h2>
-      <p>Texting was supposed to bring us closer, but somewhere along the way the spontaneous phone call disappeared. We schedule everything, overthink a simple "you free?", and end up never calling at all.</p>
-      <p>Porch Light makes it effortless again — a quiet signal that you've got a minute to connect, and a friend on the other end who's glad you're around.</p>
+      <h2>Turn your light on.</h2>
+      <p class="intro" style="margin-bottom: 32px;">Download Porch Light and start having the conversations that matter.</p>
+      <a class="store-btn" href="https://apps.apple.com/us/app/nephi-gomez/id6757113354">
+        <svg viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+        Download on the App Store
+      </a>
+      <span class="coming-soon">Coming soon to Google Play</span>
     </div>
   </section>
 
