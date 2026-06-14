@@ -98,25 +98,23 @@
     }
     section p.intro + p.intro { margin-top: 18px; }
 
-    /* Pillars */
-    .pillars { margin-top: 10px; display: flex; flex-direction: column; gap: 20px; }
+    /* Pillars — feature rows with photos */
+    .pillars { margin-top: 10px; display: flex; flex-direction: column; gap: 26px; }
     .pillar {
-      display: flex; gap: 22px; align-items: flex-start;
+      display: flex; align-items: stretch;
       background: #20203a; border: 1px solid #2a2a4e;
-      border-radius: 18px; padding: 26px 28px;
+      border-radius: 18px; overflow: hidden;
     }
-    .pillar .icon {
-      flex: 0 0 58px; width: 58px; height: 58px;
-      background: #181830; border: 1px solid #34345c; border-radius: 16px;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .pillar .icon svg { width: 30px; height: 30px; }
+    .pillar .pic { flex: 0 0 42%; }
+    .pillar .pic img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .pillar .body { flex: 1; min-width: 0; padding: 28px 30px; align-self: center; }
+    .pillar:nth-child(even) { flex-direction: row-reverse; }
     .pillar-tag {
       display: block; text-transform: uppercase; letter-spacing: 2px;
       font-size: 0.72rem; font-weight: 600; color: #f4a523; margin-bottom: 7px;
     }
-    .pillar h3 { font-size: 1.35rem; font-weight: 500; color: #f5f5fa; margin-bottom: 8px; }
-    .pillar p { color: #b6b6cc; }
+    .pillar h3 { font-size: 1.3rem; font-weight: 500; color: #f5f5fa; margin-bottom: 8px; }
+    .pillar p { color: #b6b6cc; font-size: 0.98rem; }
 
     /* Built for real life */
     .notes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 6px; }
@@ -137,7 +135,9 @@
     @media (max-width: 560px) {
       .hero h1 { font-size: 2.3rem; }
       section h2 { font-size: 1.75rem; }
-      .pillar { padding: 22px; gap: 18px; }
+      .pillar, .pillar:nth-child(even) { flex-direction: column; }
+      .pillar .pic { flex: none; height: 200px; }
+      .pillar .body { padding: 24px; }
     }
   </style>
 </head>
@@ -174,22 +174,12 @@
 
   <section class="ways">
     <div class="container">
-      <div class="section-photo" style="margin: 0 0 36px;">
-        <img src="driving-call.jpg" alt="A man smiling during a hands-free call while driving, both hands on the wheel">
-      </div>
       <h2>Three simple ways to <span class="accent">stay connected</span></h2>
       <div class="pillars">
 
         <div class="pillar">
-          <div class="icon">
-            <svg viewBox="0 0 48 48" fill="none" stroke="#f4a523" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-              <line x1="24" y1="6" x2="24" y2="10"/>
-              <path d="M19 14 H29 L32 20 H16 Z"/>
-              <path d="M18 20 H30 L32 38 H16 Z"/>
-              <path d="M24 25 C 29 30, 28 35, 24 37 C 20 35, 19 30, 24 25 Z" fill="#f4a523" stroke="none"/>
-            </svg>
-          </div>
-          <div>
+          <div class="pic"><img src="driving-call.jpg" alt="A man smiling during a hands-free call while driving" style="object-position: 38% 35%;"></div>
+          <div class="body">
             <span class="pillar-tag">Porch Light</span>
             <h3>A standing invitation to reach you.</h3>
             <p>Your porch light is a standing invitation — when it's on, your people know it's a good time to call. And you barely have to think about it: Porch Light turns your light on and off for you automatically, around your day, so you're reachable when it makes sense and never when it doesn't.</p>
@@ -197,15 +187,8 @@
         </div>
 
         <div class="pillar">
-          <div class="icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#f4a523" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-              <path d="M23 4v6h-6"/>
-              <path d="M1 20v-6h6"/>
-              <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10"/>
-              <path d="M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
-            </svg>
-          </div>
-          <div>
+          <div class="pic"><img src="woman-call.jpg" alt="A woman laughing warmly during a phone call at home" style="object-position: 45% 30%;"></div>
+          <div class="body">
             <span class="pillar-tag">Auto Call</span>
             <h3>Don't let the months slip by.</h3>
             <p>Good intentions fade. Auto Call sets up a recurring conversation at a frequency you choose and rings you both when you're available — so staying close actually happens, instead of slipping away.</p>
@@ -213,24 +196,14 @@
         </div>
 
         <div class="pillar">
-          <div class="icon">
-            <svg viewBox="0 0 48 48" fill="none" stroke="#f4a523" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-              <rect x="16" y="8" width="18" height="32" rx="2"/>
-              <circle cx="30" cy="24" r="1.6" fill="#f4a523" stroke="none"/>
-              <path d="M11 18 Q8 24 11 30"/>
-              <path d="M6 14 Q2 24 6 34"/>
-            </svg>
-          </div>
-          <div>
+          <div class="pic"><img src="boy-knock.jpg" alt="A young boy reaching up to knock on a tall wooden door" style="object-position: center 25%;"></div>
+          <div class="body">
             <span class="pillar-tag">Knock</span>
             <h3>Someone to call, right now.</h3>
             <p>Some moments can't wait. One tap on Knock connects you with someone who cares, within minutes — because everyone deserves to have someone to call.</p>
           </div>
         </div>
 
-      </div>
-      <div class="section-photo">
-        <img src="woman-call.jpg" alt="A woman laughing warmly during a phone call at home">
       </div>
     </div>
   </section>
@@ -239,9 +212,6 @@
     <div class="container">
       <h2>No posts. No likes. <span class="accent">No strangers.</span></h2>
       <p class="intro">Porch Light isn't social media. There's no feed to perform for, no audience, no followers to chase. Just genuine, one-on-one conversation with the handful of people who actually matter to you.</p>
-      <div class="section-photo">
-        <img src="boy-knock.jpg" alt="A young boy reaching up to knock on a tall wooden door">
-      </div>
     </div>
   </section>
 
