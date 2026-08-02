@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.thirdplaceapp",
+      "sha256_cert_fingerprints": [
+        "B6:68:AC:49:93:7D:D4:D2:B7:CD:40:BC:CE:58:86:37:7F:5F:BD:80:10:A7:11:8D:55:B2:90:4C:54:B0:08:5A"
+      ]
+    }
+  }
+]

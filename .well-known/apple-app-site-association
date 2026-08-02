@@ -1,0 +1,16 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appIDs": ["9AUHL694N9.com.thirdplaceapp"],
+        "appID": "9AUHL694N9.com.thirdplaceapp",
+        "components": [
+          { "/": "/join", "comment": "Circle invite links" },
+          { "/": "/join/*", "comment": "Circle invite links (trailing slash / path forms)" }
+        ],
+        "paths": ["/join", "/join/*"]
+      }
+    ]
+  }
+}
