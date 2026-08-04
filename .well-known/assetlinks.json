@@ -5,7 +5,8 @@
       "namespace": "android_app",
       "package_name": "com.thirdplaceapp",
       "sha256_cert_fingerprints": [
-        "B6:68:AC:49:93:7D:D4:D2:B7:CD:40:BC:CE:58:86:37:7F:5F:BD:80:10:A7:11:8D:55:B2:90:4C:54:B0:08:5A"
+        "B6:68:AC:49:93:7D:D4:D2:B7:CD:40:BC:CE:58:86:37:7F:5F:BD:80:10:A7:11:8D:55:B2:90:4C:54:B0:08:5A",
+        "E1:81:FE:E5:B4:3E:29:8B:3F:87:E9:9D:D2:79:C4:5A:C0:A0:14:65:F4:0D:AD:EE:E0:AB:23:EC:B6:1B:3A:DF"
       ]
     }
   }
