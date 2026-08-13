@@ -22,13 +22,6 @@
   h1 { font-family:'Fraunces',serif; font-size:clamp(1.7rem,6vw,2.4rem); font-weight:600; line-height:1.2; margin-bottom:10px; }
   h1 em { font-style:italic; color:var(--amber); }
   .sub { color:var(--muted); font-size:1.02rem; line-height:1.55; max-width:26rem; margin-bottom:30px; }
-  .code-card {
-    background:var(--card); border:1px solid #34345a; border-radius:16px;
-    padding:18px 30px; margin-bottom:8px; cursor:pointer;
-  }
-  .code-label { font-size:.72rem; letter-spacing:.14em; color:var(--muted); margin-bottom:6px; }
-  .code { font-size:2.1rem; font-weight:700; letter-spacing:.3em; color:var(--amber); padding-left:.3em; }
-  .copy-hint { font-size:.8rem; color:var(--muted); margin-bottom:30px; min-height:1.2em; }
   .open-app {
     display:inline-block; background:var(--amber); color:#1a1a2e; font-weight:600;
     font-size:1.05rem; padding:16px 34px; border-radius:14px; text-decoration:none;
@@ -60,21 +53,15 @@
   <h1>You're invited to a <em>circle</em></h1>
   <p class="sub">A friend wants you in their circle on Porch Light — the app for spontaneous phone calls with the people you love.</p>
 
-  <div class="code-card" id="codeCard" onclick="copyCode()" style="display:none">
-    <div class="code-label">YOUR INVITE CODE</div>
-    <div class="code" id="codeText"></div>
-  </div>
-  <div class="copy-hint" id="copyHint"></div>
-
   <a class="open-app" id="openApp" href="#" style="display:none">I have the app — open it</a>
-  <p class="open-note" id="openNote" style="display:none">Takes you straight to the join screen.</p>
+  <p class="open-note" id="openNote" style="display:none">Takes you straight into the circle.</p>
 
   <div class="divider">New to Porch Light?</div>
 
   <ol class="steps">
     <li><b>1.</b> Download the app below</li>
     <li><b>2.</b> Sign up (takes a minute)</li>
-    <li><b>3.</b> Tap <b>Circles → Join a circle</b> and enter your code</li>
+    <li><b>3.</b> Re-tap your invite link — it takes you into the circle</li>
   </ol>
 
   <div class="stores">
@@ -93,20 +80,10 @@
 <script>
   var code = (new URLSearchParams(location.search).get('c') || '').replace(/[^a-z0-9]/gi, '').toUpperCase().slice(0, 6);
   if (code) {
-    document.getElementById('codeText').textContent = code;
-    document.getElementById('codeCard').style.display = 'block';
-    document.getElementById('copyHint').textContent = 'Tap the code to copy it';
     var openApp = document.getElementById('openApp');
     openApp.href = 'porchlight://join/' + code;
     openApp.style.display = 'inline-block';
     document.getElementById('openNote').style.display = 'block';
-  }
-  function copyCode() {
-    if (!code) return;
-    var done = function () { document.getElementById('copyHint').textContent = 'Copied! ✓'; };
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(code).then(done, function () {});
-    }
   }
 </script>
 </body>
