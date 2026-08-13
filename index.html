@@ -141,35 +141,9 @@
       .pillar .body { padding: 28px 24px; }
     }
 
-    /* Invite banner — only shown when the URL carries a friend code (?f=CODE),
-       i.e. someone without the app tapped a personal invite link. */
-    .invite-banner {
-      background: #20203a; border-bottom: 1px solid #2a2a4e;
-      padding: 28px 24px 24px; text-align: center;
-    }
-    .invite-banner h2 {
-      font-size: 1.55rem; font-weight: 500; color: #f5f5fa;
-      line-height: 1.25; margin-bottom: 14px;
-    }
-    .invite-banner ol {
-      list-style: none; display: inline-block; text-align: left;
-      color: #c2c2d6; font-size: 1.02rem; line-height: 1.75; margin-bottom: 14px;
-    }
-    .invite-banner ol b { color: #f4a523; font-weight: 600; }
-    /* With the banner above it, the hero doesn't need its full top padding */
-    .has-invite .hero { padding-top: 16px; }
   </style>
 </head>
 <body>
-
-  <div class="invite-banner" id="inviteBanner" style="display:none">
-    <h2>Your friend wants to connect</h2>
-    <ol>
-      <li><b>1.</b> Download the app below</li>
-      <li><b>2.</b> Set it up — it only takes a minute</li>
-      <li><b>3.</b> Re-tap your invite link — it sends the friend request</li>
-    </ol>
-  </div>
 
   <header class="hero">
     <div class="container">
@@ -305,13 +279,5 @@
     </div>
   </footer>
 
-<script>
-  // Any friend code in the URL (?f=CODE) means an invite tap landed here —
-  // show the banner. The code itself is only needed by the app on the re-tap.
-  if ((new URLSearchParams(location.search).get('f') || '').trim()) {
-    document.getElementById('inviteBanner').style.display = 'block';
-    document.body.classList.add('has-invite');
-  }
-</script>
 </body>
 </html>
