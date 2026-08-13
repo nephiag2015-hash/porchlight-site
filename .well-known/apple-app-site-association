@@ -7,9 +7,11 @@
         "appID": "9AUHL694N9.com.thirdplaceapp",
         "components": [
           { "/": "/join", "comment": "Circle invite links" },
-          { "/": "/join/*", "comment": "Circle invite links (trailing slash / path forms)" }
+          { "/": "/join/*", "comment": "Circle invite links (trailing slash / path forms)" },
+          { "/": "/add", "comment": "Friend invite links" },
+          { "/": "/add/*", "comment": "Friend invite links (trailing slash / path forms)" }
         ],
-        "paths": ["/join", "/join/*"]
+        "paths": ["/join", "/join/*", "/add", "/add/*"]
       }
     ]
   }

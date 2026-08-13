@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>You're Invited — Porch Light</title>
+<meta name="description" content="A friend invited you to Porch Light.">
+<link rel="icon" type="image/png" href="/porch-light-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --navy:#1a1a2e; --amber:#f4a523; --text:#eaeaf2; --muted:#a8a8bd; --card:#232340; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family:'Inter',sans-serif; color:var(--text); background:var(--navy);
+    background:radial-gradient(ellipse at 50% 0%, #2a2a4a 0%, var(--navy) 60%);
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:40px 22px 60px; text-align:center;
+  }
+  .logo { width:76px; height:76px; border-radius:18px; margin-bottom:18px; }
+  h1 { font-family:'Fraunces',serif; font-size:clamp(1.7rem,6vw,2.4rem); font-weight:600; line-height:1.2; margin-bottom:10px; }
+  h1 em { font-style:italic; color:var(--amber); }
+  .sub { color:var(--muted); font-size:1.02rem; line-height:1.55; max-width:26rem; margin-bottom:30px; }
+  .open-app {
+    display:inline-block; background:var(--amber); color:#1a1a2e; font-weight:600;
+    font-size:1.05rem; padding:16px 34px; border-radius:14px; text-decoration:none;
+    margin-bottom:12px; width:100%; max-width:22rem;
+  }
+  .open-note { color:var(--muted); font-size:.85rem; margin-bottom:34px; }
+  .divider { display:flex; align-items:center; gap:12px; width:100%; max-width:22rem; margin-bottom:26px; color:var(--muted); font-size:.85rem; }
+  .divider::before, .divider::after { content:''; flex:1; height:1px; background:#34345a; }
+  .steps { text-align:left; max-width:22rem; margin-bottom:26px; color:var(--text); font-size:.97rem; line-height:1.5; }
+  .steps li { margin-bottom:10px; margin-left:1.2em; }
+  .steps b { color:var(--amber); font-weight:600; }
+  .stores { display:flex; gap:12px; flex-wrap:wrap; justify-content:center; margin-bottom:40px; }
+  .store-btn {
+    display:inline-block; border:1px solid #44446a; border-radius:12px; padding:13px 22px;
+    color:var(--text); text-decoration:none; font-weight:500; font-size:.98rem; background:var(--card);
+  }
+  footer { margin-top:auto; color:var(--muted); font-size:.85rem; }
+  footer a { color:var(--muted); }
+</style>
+</head>
+<body>
+  <img class="logo" src="/porch-light-icon.png" alt="Porch Light">
+  <h1>A friend wants you on their <em>porch</em></h1>
+  <p class="sub">Porch Light is the app for spontaneous phone calls with the people you love — your light comes on when you're free to talk.</p>
+
+  <a class="open-app" id="openApp" href="#" style="display:none">I have the app — open it</a>
+  <p class="open-note" id="openNote" style="display:none">Adds you as friends right away.</p>
+
+  <div class="divider">New to Porch Light?</div>
+
+  <ol class="steps">
+    <li><b>1.</b> Download the app below</li>
+    <li><b>2.</b> Sign up (takes a minute)</li>
+    <li><b>3.</b> Come back and tap your invite link again — you'll be connected</li>
+  </ol>
+
+  <div class="stores">
+    <a class="store-btn" href="https://apps.apple.com/us/app/nephi-gomez/id6757113354">&#63743; App Store</a>
+    <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.thirdplaceapp">&#9654; Google Play</a>
+  </div>
+
+  <footer><a href="/">theporchlightapp.com</a></footer>
+
+<script>
+  var code = (new URLSearchParams(location.search).get('f') || '').replace(/[^a-z0-9]/gi, '').toUpperCase().slice(0, 6);
+  if (code) {
+    var openApp = document.getElementById('openApp');
+    openApp.href = 'porchlight://friend/' + code;
+    openApp.style.display = 'inline-block';
+    document.getElementById('openNote').style.display = 'block';
+  }
+</script>
+</body>
+</html>
