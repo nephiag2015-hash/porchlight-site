@@ -156,6 +156,8 @@
       color: #c2c2d6; font-size: 1.02rem; line-height: 1.75; margin-bottom: 14px;
     }
     .invite-banner ol b { color: #f4a523; font-weight: 600; }
+    /* With the banner above it, the hero doesn't need its full top padding */
+    .has-invite .hero { padding-top: 28px; }
   </style>
 </head>
 <body>
@@ -308,6 +310,7 @@
   // show the banner. The code itself is only needed by the app on the re-tap.
   if ((new URLSearchParams(location.search).get('f') || '').trim()) {
     document.getElementById('inviteBanner').style.display = 'block';
+    document.body.classList.add('has-invite');
   }
 </script>
 </body>
