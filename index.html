@@ -140,9 +140,36 @@
       .pillar .pic { flex: none; height: 220px; }
       .pillar .body { padding: 28px 24px; }
     }
+
+    /* Invite banner — only shown when the URL carries a friend code (?f=CODE),
+       i.e. someone without the app tapped a personal invite link. */
+    .invite-banner {
+      background: #20203a; border-bottom: 1px solid #2a2a4e;
+      padding: 28px 24px 24px; text-align: center;
+    }
+    .invite-banner h2 {
+      font-size: 1.55rem; font-weight: 500; color: #f5f5fa;
+      line-height: 1.25; margin-bottom: 14px;
+    }
+    .invite-banner ol {
+      list-style: none; display: inline-block; text-align: left;
+      color: #c2c2d6; font-size: 1.02rem; line-height: 1.75; margin-bottom: 14px;
+    }
+    .invite-banner ol b { color: #f4a523; font-weight: 600; }
+    .invite-banner .open-link { display: block; font-size: 0.95rem; }
   </style>
 </head>
 <body>
+
+  <div class="invite-banner" id="inviteBanner" style="display:none">
+    <h2>You received a friend request&nbsp;💡</h2>
+    <ol>
+      <li><b>1.</b> Download the app below</li>
+      <li><b>2.</b> Set it up — it only takes a minute</li>
+      <li><b>3.</b> Re-tap your invite link — it sends the friend request</li>
+    </ol>
+    <a class="open-link" id="inviteOpen" href="#">Already have the app? Open it →</a>
+  </div>
 
   <header class="hero">
     <div class="container">
@@ -278,5 +305,13 @@
     </div>
   </footer>
 
+<script>
+  // Same code normalization as the app side (App.js): 6 alphanumerics, upper.
+  var inviteCode = (new URLSearchParams(location.search).get('f') || '').replace(/[^a-z0-9]/gi, '').toUpperCase().slice(0, 6);
+  if (inviteCode) {
+    document.getElementById('inviteBanner').style.display = 'block';
+    document.getElementById('inviteOpen').href = 'porchlight://friend/' + inviteCode;
+  }
+</script>
 </body>
 </html>
