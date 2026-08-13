@@ -51,40 +51,101 @@
 </head>
 <body>
   <img class="logo" src="/porch-light-icon.png" alt="Porch Light">
-  <h1>Your friend wants to <em>connect</em></h1>
-  <p class="sub">They're inviting you to Porch Light — the app for spontaneous phone calls with the people you love.</p>
+  <h1 id="t1">Your friend wants to <em>connect</em></h1>
+  <p class="sub" id="sub">They're inviting you to Porch Light — the app for spontaneous phone calls with the people you love.</p>
 
   <a class="open-app" id="openApp" href="#" style="display:none">I have the app — open it</a>
   <p class="open-note" id="openNote" style="display:none">Takes you straight to their invite.</p>
 
-  <div class="divider">New to Porch Light?</div>
+  <div class="divider" id="divider">New to Porch Light?</div>
 
   <ol class="steps">
-    <li><b>1.</b> Download the app below</li>
-    <li><b>2.</b> Sign up (takes a minute)</li>
-    <li><b>3.</b> Re-tap your invite link — it sends the friend request</li>
+    <li id="s1"><b>1.</b> Download the app below</li>
+    <li id="s2"><b>2.</b> Sign up (takes a minute)</li>
+    <li id="s3"><b>3.</b> Re-tap your invite link — it sends the friend request</li>
   </ol>
 
   <div class="stores">
     <a class="store-btn" href="https://apps.apple.com/us/app/nephi-gomez/id6757113354">
       <svg viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
-      Download on the App Store
+      <span id="storeApple">Download on the App Store</span>
     </a>
     <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.thirdplaceapp">
       <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>
-      Download on Google Play
+      <span id="storePlay">Download on Google Play</span>
     </a>
   </div>
 
   <footer><a href="/">theporchlightapp.com</a></footer>
 
 <script>
-  var code = (new URLSearchParams(location.search).get('f') || '').replace(/[^a-z0-9]/gi, '').toUpperCase();
+  var q = new URLSearchParams(location.search);
+  var code = (q.get('f') || '').replace(/[^a-z0-9]/gi, '').toUpperCase();
   if (code) {
     var openApp = document.getElementById('openApp');
     openApp.href = 'porchlight://friend/' + code;
     openApp.style.display = 'inline-block';
     document.getElementById('openNote').style.display = 'block';
+  }
+
+  // Localize for the reader: browser language decides, ?l= overrides (for testing
+  // or language-pinned links). Unknown languages fall back to the English markup.
+  var I18N = {
+    es: {
+      title: 'Te invitaron — Porch Light',
+      t1: 'Tu amigo quiere <em>conectar</em>',
+      sub: 'Te invita a Porch Light — la app para llamadas espontáneas con las personas que quieres.',
+      open: 'Ya tengo la app — ábrela',
+      note: 'Te lleva directo a su invitación.',
+      divider: '¿Nuevo en Porch Light?',
+      s1: '<b>1.</b> Descarga la app aquí abajo',
+      s2: '<b>2.</b> Regístrate (toma un minuto)',
+      s3: '<b>3.</b> Vuelve a tocar tu enlace de invitación — envía la solicitud de amistad',
+      apple: 'Descargar en el App Store',
+      play: 'Descargar en Google Play'
+    },
+    fr: {
+      title: 'Tu es invité — Porch Light',
+      t1: 'Ton ami veut <em>se connecter</em>',
+      sub: "Il t'invite sur Porch Light — l'appli pour des appels spontanés avec les gens que tu aimes.",
+      open: "J'ai déjà l'appli — l'ouvrir",
+      note: 'Tu arrives directement sur son invitation.',
+      divider: 'Nouveau sur Porch Light ?',
+      s1: "<b>1.</b> Télécharge l'appli ci-dessous",
+      s2: '<b>2.</b> Inscris-toi (une minute suffit)',
+      s3: "<b>3.</b> Appuie à nouveau sur ton lien d'invitation — il envoie la demande d'ami",
+      apple: "Télécharger sur l'App Store",
+      play: 'Télécharger sur Google Play'
+    },
+    pt: {
+      title: 'Você foi convidado — Porch Light',
+      t1: 'Seu amigo quer <em>se conectar</em>',
+      sub: 'Ele está te convidando para o Porch Light — o app para ligações espontâneas com as pessoas que você ama.',
+      open: 'Já tenho o app — abrir',
+      note: 'Leva você direto ao convite.',
+      divider: 'Novo no Porch Light?',
+      s1: '<b>1.</b> Baixe o app abaixo',
+      s2: '<b>2.</b> Cadastre-se (leva um minuto)',
+      s3: '<b>3.</b> Toque de novo no seu link de convite — ele envia o pedido de amizade',
+      apple: 'Baixar na App Store',
+      play: 'Baixar no Google Play'
+    }
+  };
+  var lang = ((q.get('l') || navigator.language || 'en') + '').toLowerCase().slice(0, 2);
+  var t = I18N[lang];
+  if (t) {
+    document.documentElement.lang = lang;
+    document.title = t.title;
+    document.getElementById('t1').innerHTML = t.t1;
+    document.getElementById('sub').textContent = t.sub;
+    document.getElementById('openApp').textContent = t.open;
+    document.getElementById('openNote').textContent = t.note;
+    document.getElementById('divider').textContent = t.divider;
+    document.getElementById('s1').innerHTML = t.s1;
+    document.getElementById('s2').innerHTML = t.s2;
+    document.getElementById('s3').innerHTML = t.s3;
+    document.getElementById('storeApple').textContent = t.apple;
+    document.getElementById('storePlay').textContent = t.play;
   }
 </script>
 </body>
