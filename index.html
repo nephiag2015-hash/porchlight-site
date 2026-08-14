@@ -124,6 +124,18 @@
     .note p { color: #9494ac; font-size: 0.94rem; }
     @media (max-width: 560px) { .notes { grid-template-columns: 1fr; gap: 26px; } }
 
+    /* Counter */
+    .counter { text-align: center; padding: 58px 0 50px; }
+    .counter-num {
+      font-family: 'Fraunces', Georgia, 'Times New Roman', serif;
+      font-size: 4.2rem; font-weight: 600; line-height: 1;
+      letter-spacing: -0.02em; color: #f4a523;
+      font-variant-numeric: tabular-nums;
+    }
+    .counter-label { color: #c2c2d6; font-size: 1.15rem; margin-top: 14px; }
+    .counter-sub { color: #8b8b9e; font-size: 0.95rem; margin-top: 6px; }
+    @media (max-width: 560px) { .counter-num { font-size: 3.1rem; } }
+
     .cta { text-align: center; }
 
     /* Footer */
@@ -250,6 +262,14 @@
     <img src="knock-door.jpg" alt="A hand knocking on a warm wooden door beneath a glowing porch lantern at dusk">
   </div>
 
+  <section class="counter" id="counter" hidden>
+    <div class="container">
+      <div class="counter-num" id="counter-num">0</div>
+      <p class="counter-label">real conversations — and counting</p>
+      <p class="counter-sub">Every one of them a phone call between people that care.</p>
+    </div>
+  </section>
+
   <section class="cta">
     <div class="container">
       <h2>Keep the light on.</h2>
@@ -278,6 +298,45 @@
       <p>&copy; 2026 Porch Light. All rights reserved.</p>
     </div>
   </footer>
+
+  <script>
+    // Counter — reads the aggregate the daily metrics function publishes each
+    // morning. The section stays hidden unless the fetch succeeds, so a failure
+    // shows nothing rather than a stranded zero.
+    (function () {
+      var SOURCE = 'https://rd-place-85a13-default-rtdb.firebaseio.com/metrics/public.json';
+      var section = document.getElementById('counter');
+      var el = document.getElementById('counter-num');
+
+      function countUp(target) {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          el.textContent = target.toLocaleString();
+          return;
+        }
+        var start = performance.now();
+        (function frame(now) {
+          var t = Math.min(1, (now - start) / 1400);
+          el.textContent = Math.round(target * (1 - Math.pow(1 - t, 3))).toLocaleString();
+          if (t < 1) requestAnimationFrame(frame);
+        })(start);
+      }
+
+      fetch(SOURCE, { cache: 'no-store' })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (d) {
+          var n = d && d.qualityConversations;
+          if (typeof n !== 'number' || n <= 0) return;
+          section.hidden = false;
+          // It sits below the fold, so hold the count-up until it's on screen.
+          if (!('IntersectionObserver' in window)) { countUp(n); return; }
+          var io = new IntersectionObserver(function (entries) {
+            if (entries[0].isIntersecting) { io.disconnect(); countUp(n); }
+          }, { threshold: 0.4 });
+          io.observe(section);
+        })
+        .catch(function () {});
+    })();
+  </script>
 
 </body>
 </html>
