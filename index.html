@@ -125,7 +125,8 @@
     @media (max-width: 560px) { .notes { grid-template-columns: 1fr; gap: 26px; } }
 
     /* See it in action — two phones, click to play */
-    .demos { display: flex; justify-content: center; gap: 44px; margin-top: 38px; flex-wrap: wrap; }
+    .demos-section .container { max-width: 940px; }
+    .demos { display: flex; justify-content: center; gap: 40px; margin-top: 38px; flex-wrap: wrap; }
     .demo { width: 250px; text-align: center; }
     .phone {
       position: relative; width: 100%; aspect-ratio: 9 / 18.5; overflow: hidden;
@@ -291,7 +292,7 @@
   <section class="demos-section">
     <div class="container">
       <h2>Here's what it <span class="accent">looks like</span></h2>
-      <p class="intro">Two one-minute screen recordings from the app.</p>
+      <p class="intro">Three one-minute screen recordings from the app.</p>
       <div class="demos">
         <div class="demo">
           <div class="phone" data-video="VwVqUNA5e1c">
@@ -300,6 +301,14 @@
           </div>
           <h3>Setting up your light</h3>
           <p>Onboarding, and how your light turns on and off around your day.</p>
+        </div>
+        <div class="demo">
+          <div class="phone" data-video="3VaWTHEbWXY">
+            <img src="demo-autocall.jpg" alt="A friend's page with Auto-call switched on">
+            <button class="play" type="button" aria-label="Play: auto call"><span>Watch · 1 min</span></button>
+          </div>
+          <h3>Auto Call</h3>
+          <p>Pick how often. When you're both free, it rings you both.</p>
         </div>
         <div class="demo">
           <div class="phone" data-video="5C_brs7cmuk">
