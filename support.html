@@ -14,35 +14,98 @@
       padding: 40px 20px;
       line-height: 1.6;
     }
-    .container { max-width: 640px; margin: 0 auto; }
+    .container { max-width: 560px; margin: 0 auto; }
+    .back { margin-bottom: 32px; display: inline-block; color: #f4a523; text-decoration: none; }
+    .back:hover { text-decoration: underline; }
     h1 {
-      font-size: 2rem;
-      color: #f4a523;
-      margin-bottom: 8px;
+      font-size: 1.8rem;
+      color: #e0e0e0;
+      margin-bottom: 24px;
+      font-weight: 600;
     }
-    h2 {
-      font-size: 1.4rem;
+    .section-title {
       color: #f4a523;
-      margin-top: 32px;
-      margin-bottom: 12px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
     }
-    .updated {
+    .intro {
+      background: #22223a;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 24px;
+      border-left: 3px solid #f4a523;
+      color: #e8e8ed;
+      font-size: 0.95rem;
+    }
+    .field-label {
+      color: #8b8b9e;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      display: block;
+    }
+    .type-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .type-btn {
+      flex: 1;
+      background: #22223a;
+      border-radius: 10px;
+      padding: 12px;
+      text-align: center;
+      border: 1px solid #3a3a5a;
       color: #8b8b9e;
       font-size: 0.9rem;
-      margin-bottom: 32px;
+      cursor: pointer;
+      transition: all 0.15s ease;
     }
-    p { margin-bottom: 16px; }
-    ul {
-      margin-bottom: 16px;
-      padding-left: 24px;
-    }
-    li { margin-bottom: 6px; }
-    a {
+    .type-btn.active {
+      border-color: #f4a523;
+      background: #2a2a4e;
       color: #f4a523;
-      text-decoration: none;
     }
-    a:hover { text-decoration: underline; }
-    .back { margin-bottom: 32px; display: inline-block; }
+    textarea {
+      width: 100%;
+      background: #22223a;
+      border-radius: 12px;
+      padding: 16px;
+      color: #e0e0e0;
+      font-size: 0.95rem;
+      min-height: 150px;
+      border: 1px solid #3a3a5a;
+      margin-bottom: 20px;
+      font-family: inherit;
+      resize: vertical;
+    }
+    textarea::placeholder { color: #6b6b82; }
+    textarea:focus { outline: none; border-color: #f4a523; }
+    .submit-btn {
+      width: 100%;
+      background: #f4a523;
+      border: none;
+      border-radius: 12px;
+      padding: 16px;
+      color: #1a1a2e;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .submit-btn:hover { background: #ffb733; }
+    .note {
+      margin-top: 16px;
+      color: #6b6b82;
+      font-size: 0.85rem;
+      text-align: center;
+    }
+    .note a { color: #f4a523; text-decoration: none; }
+    .note a:hover { text-decoration: underline; }
     .footer {
       margin-top: 48px;
       padding-top: 24px;
@@ -56,34 +119,50 @@
   <div class="container">
     <a href="index.html" class="back">&larr; Back</a>
     <h1>Support</h1>
-    <p class="updated">We're happy to help.</p>
 
-    <p>Have a question, ran into a bug, or want to send feedback? Reach us directly at
-      <a href="mailto:support@theporchlightapp.com">support@theporchlightapp.com</a> — we read every message.</p>
+    <div class="section-title">Share Your Thoughts</div>
+    <div class="intro">We're building Porch Light to help people stay connected. Your feedback directly shapes what we build next! 💛</div>
 
-    <h2>Common Questions</h2>
+    <label class="field-label">What type of feedback?</label>
+    <div class="type-row" id="typeRow">
+      <div class="type-btn active" data-type="feature" data-placeholder="I wish Porch Light could...">💡 Feature</div>
+      <div class="type-btn" data-type="bug" data-placeholder="I found an issue where...">🐛 Bug</div>
+      <div class="type-btn" data-type="other" data-placeholder="I wanted to share...">💬 Other</div>
+    </div>
 
-    <p><strong>How do I let people know I'm free to talk?</strong><br>
-    Turn on your Porch Light from the Home screen. The people in your circles will see it and know you're reachable.</p>
+    <label class="field-label">Your feedback</label>
+    <textarea id="feedbackText" placeholder="I wish Porch Light could..."></textarea>
 
-    <p><strong>How is this different from a normal call?</strong><br>
-    There's no scheduling or texting first — your light does the asking. You can also turn Auto Porch Light on so it
-    switches on by itself when you get home.</p>
-
-    <p><strong>Can I control who sees my light?</strong><br>
-    Yes. Only the friends and circles you've added can see your availability. You can block or report anyone directly
-    from the app.</p>
-
-    <p><strong>How do I delete my account?</strong><br>
-    Go to Profile &rarr; Settings &rarr; Delete Account. This permanently removes your data from our systems.</p>
-
-    <h2>Still Stuck?</h2>
-    <p>Email <a href="mailto:support@theporchlightapp.com">support@theporchlightapp.com</a> with your device type and
-      a quick description of what happened, and we'll get back to you.</p>
+    <button class="submit-btn" onclick="sendFeedback()">Send Feedback</button>
+    <p class="note">Opens your email app, addressed to <a href="mailto:support@theporchlightapp.com">support@theporchlightapp.com</a></p>
 
     <div class="footer">
       <p>&copy; 2025 Porch Light. All rights reserved.</p>
     </div>
   </div>
+
+  <script>
+    let selectedType = 'feature';
+    document.querySelectorAll('.type-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        selectedType = btn.dataset.type;
+        document.getElementById('feedbackText').placeholder = btn.dataset.placeholder;
+      });
+    });
+
+    function sendFeedback() {
+      const text = document.getElementById('feedbackText').value.trim();
+      if (!text) {
+        alert('Please write something before submitting.');
+        return;
+      }
+      const typeLabels = { feature: 'Feature Request', bug: 'Bug Report', other: 'Other Feedback' };
+      const subject = encodeURIComponent(`Porch Light Feedback: ${typeLabels[selectedType]}`);
+      const body = encodeURIComponent(text);
+      window.location.href = `mailto:support@theporchlightapp.com?subject=${subject}&body=${body}`;
+    }
+  </script>
 </body>
 </html>
