@@ -133,8 +133,8 @@
     <label class="field-label">Your feedback</label>
     <textarea id="feedbackText" placeholder="I wish Porch Light could..."></textarea>
 
-    <button class="submit-btn" onclick="sendFeedback()">Send Feedback</button>
-    <p class="note">Opens your email app, addressed to <a href="mailto:support@theporchlightapp.com">support@theporchlightapp.com</a></p>
+    <button class="submit-btn" id="submitBtn" onclick="sendFeedback()">Send Feedback</button>
+    <p class="note" id="note">We read every message and reply if you leave a way to reach you.</p>
 
     <div class="footer">
       <p>&copy; 2025 Porch Light. All rights reserved.</p>
@@ -152,16 +152,36 @@
       });
     });
 
-    function sendFeedback() {
-      const text = document.getElementById('feedbackText').value.trim();
+    const ENDPOINT = 'https://us-central1-rd-place-85a13.cloudfunctions.net/submitWebFeedback';
+
+    async function sendFeedback() {
+      const textEl = document.getElementById('feedbackText');
+      const text = textEl.value.trim();
       if (!text) {
         alert('Please write something before submitting.');
         return;
       }
-      const typeLabels = { feature: 'Feature Request', bug: 'Bug Report', other: 'Other Feedback' };
-      const subject = encodeURIComponent(`Porch Light Feedback: ${typeLabels[selectedType]}`);
-      const body = encodeURIComponent(text);
-      window.location.href = `mailto:support@theporchlightapp.com?subject=${subject}&body=${body}`;
+      const btn = document.getElementById('submitBtn');
+      const note = document.getElementById('note');
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+      try {
+        const res = await fetch(ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ type: selectedType, text }),
+        });
+        const data = await res.json();
+        if (!res.ok || !data.success) throw new Error(data.error || 'Failed');
+        textEl.value = '';
+        btn.textContent = 'Sent!';
+        note.textContent = 'Thanks — your feedback helps make Porch Light better for everyone. 💛';
+        setTimeout(() => { btn.disabled = false; btn.textContent = 'Send Feedback'; }, 3000);
+      } catch (e) {
+        btn.disabled = false;
+        btn.textContent = 'Send Feedback';
+        note.textContent = "Couldn't send — please try again in a moment.";
+      }
     }
   </script>
 </body>
