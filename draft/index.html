@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Porch Light — Stay close to the people who matter</title>
+  <meta name="description" content="Porch Light is a simple way to have real phone calls with the people that care. Turn your light on when it's a good time to call — no text first, no audience, just connection.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #1a1a2e;
+      background: radial-gradient(120% 80% at 50% -10%, #25254222 0%, #1a1a2e 60%), #1a1a2e;
+      color: #e6e6ee;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3, .wordmark {
+      font-family: 'Fraunces', Georgia, 'Times New Roman', serif;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+    a { color: #f4a523; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { max-width: 700px; margin: 0 auto; padding: 0 24px; }
+
+    /* Hero */
+    .hero { position: relative; text-align: center; padding: 44px 24px 56px; overflow: hidden; }
+    .logo-wrap { display: inline-block; margin-bottom: 10px; }
+    .logo { width: 104px; height: auto; display: block; border-radius: 24px; }
+
+    .wordmark {
+      display: block; text-transform: uppercase;
+      letter-spacing: 6px; font-size: 0.8rem; font-weight: 600;
+      color: #f4a523; margin-bottom: 16px;
+    }
+    .hero h1 {
+      font-size: 2.9rem; line-height: 1.12; font-weight: 500;
+      color: #f5f5fa; margin: 0 auto 20px; max-width: 580px;
+    }
+    .hero .lede {
+      font-size: 1.18rem; color: #aeaec6;
+      max-width: 540px; margin: 0 auto 30px;
+    }
+    .hero .lede em { color: #f4a523; font-style: italic; }
+
+    /* App Store button */
+    .store-btn {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: #f4a523; color: #1a1a2e;
+      padding: 15px 30px; border-radius: 14px;
+      font-weight: 600; font-size: 1.05rem;
+      box-shadow: 0 10px 30px -10px rgba(244,165,35,0.5);
+      transition: transform 0.15s ease, background 0.15s ease;
+    }
+    .store-btn:hover { text-decoration: none; background: #ffb733; transform: translateY(-2px); }
+    .store-btn svg { width: 24px; height: 24px; fill: #1a1a2e; }
+    .store-btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
+
+    /* Hero human anchor */
+    .hero-photo { margin-top: 46px; }
+    .hero-photo img {
+      width: 100%; height: auto; display: block;
+      border-radius: 20px; border: 1px solid #2a2a4e;
+    }
+
+    /* Contained in-section photo */
+    .section-photo { margin: 34px 0 0; }
+    .section-photo img {
+      width: 100%; height: auto; display: block;
+      border-radius: 20px; border: 1px solid #2a2a4e;
+    }
+
+    /* Full-bleed atmospheric photo bands */
+    .photo-band { position: relative; width: 100%; height: 380px; overflow: hidden; }
+    .photo-band img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .photo-band::after {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background: linear-gradient(to bottom, #1a1a2e 0%, transparent 24%, transparent 74%, #1a1a2e 100%);
+    }
+    @media (max-width: 560px) { .photo-band { height: 260px; } }
+
+    /* Sections */
+    section { padding: 60px 0; }
+    section + section { border-top: 1px solid #24243d; }
+    section h2 {
+      font-size: 2.05rem; font-weight: 500; color: #f5f5fa;
+      margin-bottom: 20px; text-align: center; line-height: 1.22;
+    }
+    section h2 .accent { color: #f4a523; font-style: italic; font-weight: 400; }
+    section p.intro {
+      color: #b2b2c8; max-width: 580px;
+      margin: 0 auto; text-align: center; font-size: 1.1rem;
+    }
+    section p.intro + p.intro { margin-top: 18px; }
+
+    /* Pillars — feature rows with photos */
+    .ways .container { max-width: 940px; }
+    .pillars { margin-top: 16px; display: flex; flex-direction: column; gap: 28px; }
+    .pillar {
+      display: flex; flex-direction: row-reverse; align-items: stretch; min-height: 280px;
+      background: #20203a; border: 1px solid #2a2a4e;
+      border-radius: 18px; overflow: hidden;
+    }
+    .pillar .pic { flex: 0 0 46%; }
+    .pillar .pic img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .pillar .body { flex: 1; min-width: 0; padding: 38px 46px; align-self: center; }
+    .pillar:nth-child(2) { flex-direction: row; }
+    .pillar-tag {
+      display: block; text-transform: uppercase; letter-spacing: 2.5px;
+      font-size: 0.8rem; font-weight: 600; color: #f4a523; margin-bottom: 10px;
+    }
+    .pillar h3 { font-size: 1.65rem; font-weight: 500; color: #f5f5fa; margin-bottom: 12px; }
+    .pillar p { color: #c2c2d6; font-size: 1.1rem; line-height: 1.65; }
+
+    /* Built for real life */
+    .notes { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px 36px; margin-top: 10px; }
+    .note { text-align: center; }
+    .note h3 { font-size: 1.08rem; font-weight: 600; color: #ededf4; margin-bottom: 6px; }
+    .note p { color: #9494ac; font-size: 0.94rem; }
+    @media (max-width: 560px) { .notes { grid-template-columns: 1fr; gap: 26px; } }
+
+    /* See it in action — two phones, click to play */
+    .demos-section .container { max-width: 940px; }
+    .demos { display: flex; justify-content: center; gap: 40px; margin-top: 38px; flex-wrap: wrap; }
+    .demo { width: 250px; text-align: center; }
+    .phone {
+      position: relative; width: 100%; aspect-ratio: 9 / 18.5; overflow: hidden;
+      background: #0e0e1a; border: 9px solid #2d2d50; border-radius: 38px;
+      box-shadow: 0 24px 50px -20px rgba(0,0,0,0.7), 0 0 0 1px #1c1c33;
+    }
+    /* Poster and player are oversized and shifted up so the bezel hides the
+       recording's status bar (clock, red screen-record pill). */
+    .phone img, .phone iframe {
+      position: absolute; left: 0; width: 100%; top: -6%; height: 106%;
+      border: 0; display: block; object-fit: cover;
+    }
+    .phone .play {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      background: linear-gradient(to bottom, transparent 55%, rgba(14,14,26,0.7));
+      border: 0; cursor: pointer; padding: 0;
+    }
+    .phone .play::before {
+      content: ''; position: absolute; left: 50%; top: 50%; width: 64px; height: 64px;
+      transform: translate(-50%, -50%); border-radius: 50%; background: #f4a523;
+      box-shadow: 0 10px 30px -6px rgba(244,165,35,0.7);
+      transition: transform 0.15s ease;
+    }
+    .phone .play::after {
+      content: ''; position: absolute; left: 50%; top: 50%;
+      transform: translate(-38%, -50%);
+      border-style: solid; border-width: 12px 0 12px 20px;
+      border-color: transparent transparent transparent #1a1a2e;
+    }
+    .phone .play:hover::before { transform: translate(-50%, -50%) scale(1.08); }
+    .phone .play span {
+      position: absolute; left: 0; right: 0; bottom: 18px;
+      color: #f5f5fa; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.5px;
+    }
+    .demo h3 { font-size: 1.08rem; font-weight: 600; color: #ededf4; margin: 18px 0 4px; }
+    .demo p { color: #9494ac; font-size: 0.94rem; line-height: 1.5; }
+    @media (max-width: 560px) { .demos { gap: 36px; } }
+
+    /* Counter (in hero, under the store buttons) */
+    .counter { max-width: 460px; margin: 34px auto 0; text-align: center; }
+    .counter-num {
+      font-family: 'Fraunces', Georgia, 'Times New Roman', serif;
+      font-size: 3.4rem; font-weight: 600; line-height: 1;
+      letter-spacing: -0.02em; color: #f4a523;
+      font-variant-numeric: tabular-nums;
+    }
+    .counter-label { color: #c2c2d6; font-size: 1.1rem; margin-top: 10px; }
+    .counter-bar {
+      position: relative; height: 10px; margin: 18px 0 8px;
+      background: #24243d; border-radius: 999px; overflow: hidden;
+    }
+    .counter-fill {
+      position: absolute; inset: 0 auto 0 0; width: 0;
+      min-width: 6px; border-radius: 999px;
+      background: linear-gradient(90deg, #f4a523, #ffcf6b);
+      box-shadow: 0 0 12px 2px rgba(244,165,35,0.55);
+      transition: width 1.4s ease-out;
+    }
+    .counter-goal {
+      display: flex; justify-content: space-between;
+      color: #8b8b9e; font-size: 0.88rem;
+    }
+    @media (max-width: 560px) { .counter-num { font-size: 2.7rem; } }
+
+    .cta { text-align: center; }
+
+    /* Free / Premium */
+    .tier {
+      display: inline-block; margin-top: 14px; padding: 3px 11px; border-radius: 999px;
+      font-size: 0.74rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+      color: #9494ac; border: 1px solid #2e2e4e;
+    }
+    .premium .container { max-width: 940px; }
+    .premium .kicker {
+      display: block; text-align: center; text-transform: uppercase; letter-spacing: 3px;
+      font-size: 0.78rem; font-weight: 600; color: #f4a523; margin-bottom: 14px;
+    }
+    .perks { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 36px; }
+    .perk {
+      background: #20203a; border: 1px solid #2a2a4e; border-radius: 16px;
+      padding: 24px 26px;
+    }
+    .perk h3 { font-size: 1.12rem; font-weight: 600; color: #f5f5fa; margin-bottom: 6px; }
+    .perk h3 .emoji { margin-right: 8px; }
+    .perk p { color: #b2b2c8; font-size: 0.98rem; line-height: 1.6; }
+    .perk .soon { color: #8b8b9e; font-size: 0.82rem; margin-left: 6px; font-weight: 500; }
+    .premium .fine { text-align: center; color: #8b8b9e; font-size: 0.92rem; margin-top: 30px; }
+    @media (max-width: 560px) { .perks { grid-template-columns: 1fr; } }
+
+    /* Footer */
+    footer {
+      text-align: center; padding: 44px 24px;
+      border-top: 1px solid #24243d; color: #8b8b9e; font-size: 0.9rem;
+    }
+    footer .links { margin-bottom: 14px; display: flex; gap: 22px; justify-content: center; flex-wrap: wrap; }
+
+    @media (max-width: 560px) {
+      .hero h1 { font-size: 2.3rem; }
+      section h2 { font-size: 1.75rem; }
+      .pillar, .pillar:nth-child(2) { flex-direction: column; min-height: 0; }
+      .pillar .pic { flex: none; height: 220px; }
+      .pillar .body { padding: 28px 24px; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="container">
+      <div class="logo-wrap">
+        <img class="logo" src="../porch-light-icon.png" alt="Porch Light icon">
+      </div>
+
+      <span class="wordmark">Porch Light</span>
+      <h1>Keep the light on.</h1>
+      <p class="lede">A porch light means <em>come by anytime.</em> Turn yours on when you're around, and your closest people know it's a good time to call. No feed, no audience — just connection.</p>
+      <div class="store-btns">
+        <a class="store-btn" href="https://apps.apple.com/us/app/nephi-gomez/id6757113354">
+          <svg viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+          Download on the App Store
+        </a>
+        <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.thirdplaceapp">
+          <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>
+          Download on Google Play
+        </a>
+      </div>
+
+      <div class="counter" id="counter" hidden>
+        <div class="counter-num" id="counter-num">0</div>
+        <p class="counter-label">real conversations — and counting</p>
+        <div class="counter-bar"><div class="counter-fill" id="counter-fill"></div></div>
+        <div class="counter-goal"><span>Our goal</span><span>1,000,000 conversations</span></div>
+      </div>
+    </div>
+  </header>
+
+  <div class="photo-band">
+    <img src="../porch-lantern.jpg" alt="A warm porch lantern glowing at dusk, with lit windows down the street">
+  </div>
+
+  <section class="problem">
+    <div class="container">
+      <h2>We're more connected than ever — <span class="accent">and somehow further apart.</span></h2>
+      <p class="intro">Life gets full. You think of someone you care about, but you never quite know if it's a good time to call — so you text first, and wait. Or you don't. Weeks slip by. Months.</p>
+      <p class="intro">And too many of us, when a hard moment comes, aren't sure who we'd even pick up the phone to call. Porch Light was built to change that.</p>
+    </div>
+  </section>
+
+  <section class="ways">
+    <div class="container">
+      <h2>Three simple ways to <span class="accent">stay connected</span></h2>
+      <p class="intro">All of this is free.</p>
+      <div class="pillars">
+
+        <div class="pillar">
+          <div class="pic"><img src="../driving-call.jpg" alt="A man smiling during a hands-free call while driving" style="object-position: 38% 35%;"></div>
+          <div class="body">
+            <span class="pillar-tag">Porch Light</span>
+            <h3>Always on at the right moments.</h3>
+            <p>Your porch light is a standing invitation — when it's on, the people that care know it's a good time to call. Flip it yourself, or let Home Light do it for you: on when you get home, off for dinner, driving, and meetings.</p>
+          </div>
+        </div>
+
+        <div class="pillar">
+          <div class="pic"><img src="../woman-call.jpg" alt="A woman laughing warmly during a phone call at home" style="object-position: 45% 30%;"></div>
+          <div class="body">
+            <span class="pillar-tag">Warmth</span>
+            <h3>Don't let the months slip by.</h3>
+            <p>Good intentions fade. Porch Light keeps a quiet pulse on every friendship — bright for the people you've talked to lately, dimmer for the ones slipping away — and taps you on the shoulder when you're both around.</p>
+          </div>
+        </div>
+
+        <div class="pillar">
+          <div class="pic"><img src="../boy-knock.jpg" alt="A young boy reaching up to knock on a tall wooden door" style="object-position: center 25%;"></div>
+          <div class="body">
+            <span class="pillar-tag">Circles</span>
+            <h3>Someone to call, right now.</h3>
+            <p>Put your people in a circle — family, old friends, the group chat that never actually calls. Open it, see whose light is on, and just call. No text first.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="demos-section">
+    <div class="container">
+      <h2>Here's what it <span class="accent">looks like</span></h2>
+      <p class="intro">A one-minute screen recording from the app.</p>
+      <div class="demos">
+        <div class="demo">
+          <div class="phone" data-video="VwVqUNA5e1c">
+            <img src="../demo-onboarding.jpg" alt="Porch Light's welcome screen">
+            <button class="play" type="button" aria-label="Play: setting up your light"><span>Watch · 1 min</span></button>
+          </div>
+          <h3>Setting up your light</h3>
+          <p>Onboarding, and how your light turns on and off around your day.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="not-social">
+    <div class="container">
+      <h2>No posts. No likes. <span class="accent">No strangers.</span></h2>
+      <p class="intro">Porch Light isn't social media. There's no feed to perform for, no audience, no followers to chase. Just genuine, one-on-one conversation with the handful of people who actually matter to you.</p>
+    </div>
+  </section>
+
+  <section class="real-life">
+    <div class="container">
+      <h2>Built for <span class="accent">real life</span></h2>
+      <div class="notes">
+        <div class="note">
+          <h3>🏠 Home Light</h3>
+          <p>Your light comes on the moment you get home — so your people know you've landed and you're free to talk.</p>
+        </div>
+        <div class="note">
+          <h3>🌙 Quiet hours</h3>
+          <p>Block out dinner, bedtime, the moments that are yours. Your light stays dark and nothing comes through — so downtime stays downtime.</p>
+        </div>
+        <div class="note">
+          <h3>📅 Calendar</h3>
+          <p>Your light dims itself when your calendar says busy — so a call never pulls you out of a meeting.</p>
+        </div>
+        <div class="note">
+          <h3>🚗 Driving</h3>
+          <p>Your light switches on for hands-free drives — turning your commute into time to actually catch up.</p>
+        </div>
+        <div class="note">
+          <h3>✨ Glow</h3>
+          <p>Hoping someone calls tonight? Hold your light and it glows a little brighter until bedtime. Add a mood if you like — 🎉 🍿 🏠.</p>
+        </div>
+        <div class="note">
+          <h3>🔒 Private by design</h3>
+          <p>Your location never leaves your phone. Only the people you've added can see your light — nobody else.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="premium">
+    <div class="container">
+      <span class="kicker">Premium</span>
+      <h2>For the friend who <span class="accent">makes the calls</span></h2>
+      <p class="intro">Porch Light is free. Premium is for the one who keeps everyone close — it does the dialing for you.</p>
+      <div class="perks">
+        <div class="perk">
+          <h3><span class="emoji">📞</span>Calls inside the app</h3>
+          <p>Ring anyone straight from their light. Your number stays hidden — even inside circles.</p>
+        </div>
+        <div class="perk">
+          <h3><span class="emoji">☀️</span>Daily Ring</h3>
+          <p>Pick how often. When you're both free, it rings you both. Staying close, on autopilot.</p>
+        </div>
+        <div class="perk">
+          <h3><span class="emoji">🏘️</span>Knock the Block</h3>
+          <p>Calls your circle one at a time — lights on first — until someone answers.</p>
+        </div>
+        <div class="perk">
+          <h3><span class="emoji">💡</span>Three lights</h3>
+          <p>Family, Friends, Work. Each with its own place, quiet hours, and calendar — so the right people see the right light.</p>
+        </div>
+        <div class="perk">
+          <h3><span class="emoji">🎯</span>Aim your glow</h3>
+          <p>Glow for just one circle tonight, and let the rest of the porch stay quiet.</p>
+        </div>
+        <div class="perk">
+          <h3><span class="emoji">📱</span>Light on while scrolling<span class="soon">Android first</span></h3>
+          <p>Your light turns on while you're in the feed — so a friend can catch you instead.</p>
+        </div>
+        <div class="perk">
+          <h3><span class="emoji">♾️</span>No limits</h3>
+          <p>Free includes 10 friends and 5 circles. Premium removes the limit.</p>
+        </div>
+      </div>
+      <p class="fine">Premium is coming soon. Everything above the line is free today.</p>
+    </div>
+  </section>
+
+  <div class="photo-band">
+    <img src="../knock-door.jpg" alt="A hand knocking on a warm wooden door beneath a glowing porch lantern at dusk">
+  </div>
+
+  <section class="cta">
+    <div class="container">
+      <h2>Keep the light on.</h2>
+      <p class="intro" style="margin-bottom: 34px;">Download Porch Light and start having the conversations that matter.</p>
+      <div class="store-btns">
+        <a class="store-btn" href="https://apps.apple.com/us/app/nephi-gomez/id6757113354">
+          <svg viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+          Download on the App Store
+        </a>
+        <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.thirdplaceapp">
+          <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>
+          Download on Google Play
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="links">
+        <a href="../privacy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms of Service</a>
+        <a href="mailto:nephi@theporchlightapp.com">Contact</a>
+      </div>
+      <p>Contact: <a href="mailto:nephi@theporchlightapp.com">nephi@theporchlightapp.com</a></p>
+      <p>&copy; 2026 Porch Light. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Demo phones — nothing from YouTube loads until someone taps play.
+    document.querySelectorAll('.phone[data-video]').forEach(function (phone) {
+      phone.querySelector('.play').addEventListener('click', function () {
+        var f = document.createElement('iframe');
+        f.src = 'https://www.youtube-nocookie.com/embed/' + phone.dataset.video +
+          '?autoplay=1&rel=0&playsinline=1&modestbranding=1';
+        f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+        f.title = phone.querySelector('.play').getAttribute('aria-label');
+        phone.replaceChildren(f);
+      });
+    });
+  </script>
+
+  <script>
+    // Counter — reads the aggregate the daily metrics function publishes each
+    // morning. The section stays hidden unless the fetch succeeds, so a failure
+    // shows nothing rather than a stranded zero.
+    (function () {
+      var SOURCE = 'https://rd-place-85a13-default-rtdb.firebaseio.com/metrics/public.json';
+      var GOAL = 1000000;
+      var section = document.getElementById('counter');
+      var el = document.getElementById('counter-num');
+      var fill = document.getElementById('counter-fill');
+
+      function show(target) {
+        // The fill keeps a 6px min-width, so early days read as a first glow
+        // at the left edge of the bar rather than an empty track.
+        fill.style.width = Math.min(100, target / GOAL * 100) + '%';
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          el.textContent = target.toLocaleString();
+          return;
+        }
+        var start = performance.now();
+        (function frame(now) {
+          var t = Math.min(1, (now - start) / 1400);
+          el.textContent = Math.round(target * (1 - Math.pow(1 - t, 3))).toLocaleString();
+          if (t < 1) requestAnimationFrame(frame);
+        })(start);
+      }
+
+      fetch(SOURCE, { cache: 'no-store' })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (d) {
+          var n = d && d.qualityConversations;
+          if (typeof n !== 'number' || n <= 0) return;
+          section.hidden = false;
+          show(n);
+        })
+        .catch(function () {});
+    })();
+  </script>
+
+</body>
+</html>
