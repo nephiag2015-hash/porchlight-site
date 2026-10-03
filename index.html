@@ -261,6 +261,12 @@
 </head>
 <body>
 
+  <!-- Jake flyer header: hidden unless the visitor arrived from the street flyer (/jake/ -> /#jake) -->
+  <div id="jake" hidden style="background:#f4a523;color:#1a1a2e;text-align:center;padding:26px 22px 24px;">
+    <p style="font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:clamp(1.6rem,6.5vw,2.3rem);line-height:1.15;margin:0 0 8px;">Don&#39;t be a bad friend like Jake.</p>
+    <p style="font-weight:500;font-size:1.05rem;line-height:1.45;margin:0 auto;max-width:26rem;">Be the friend you wish you had. Reach out and check in with your friends.</p>
+  </div>
+
   <header class="hero">
     <div class="container">
       <div class="logo-wrap">
@@ -534,6 +540,24 @@
         })
         .catch(function () {});
     })();
+  </script>
+
+  <script>
+    // Jake flyer: show the header for flyer arrivals and tally their store taps
+    // (metrics/flyer/jake/{ios|android}; the scan itself is counted on /jake/).
+    if (location.hash === '#jake') {
+      document.getElementById('jake').hidden = false;
+      document.querySelectorAll('a.store-btn').forEach(function (a) {
+        a.addEventListener('click', function () {
+          var event = a.href.indexOf('apple.com') > -1 ? 'ios' : 'android';
+          try {
+            fetch('https://rd-place-85a13-default-rtdb.firebaseio.com/metrics/flyer/jake/' + event + '.json', {
+              method: 'PUT', keepalive: true, body: JSON.stringify({ '.sv': { increment: 1 } })
+            }).catch(function () {});
+          } catch (e) { /* counting is a nicety */ }
+        });
+      });
+    }
   </script>
 
 </body>
