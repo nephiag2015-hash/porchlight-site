@@ -202,7 +202,12 @@
     .event h2 { font-family: 'Fraunces', Georgia, serif; font-size: 1.9rem; font-weight: 600; color: #fff; margin: 6px 0 8px; }
     .event p { color: #c2c2d6; font-size: 1.02rem; line-height: 1.5; margin: 0 auto 18px; max-width: 28rem; }
     .event-frame { background: #fff; border-radius: 16px; overflow: hidden; }
-    .event-link { display: inline-block; margin-top: 12px; color: #f4a523; font-size: 0.95rem; }
+    .event-link {
+      display: inline-block; margin-top: 16px; padding: 14px 28px;
+      border: 2px solid #f4a523; border-radius: 999px;
+      color: #f4a523; font-size: 1.05rem; font-weight: 700;
+    }
+    .event-link:hover { text-decoration: none; background: rgba(244,165,35,0.12); }
 
     .cta { text-align: center; }
 
@@ -296,7 +301,7 @@
         <h2>Strangers to Neighbors</h2>
         <p>A night to turn strangers into neighbors over food, drinks, and games, plus the first look at Porch Light.</p>
         <div class="event-frame" id="eventbrite-widget-container-2002902038915"></div>
-        <a class="event-link" href="https://www.eventbrite.com/e/strangers-to-neighbors-tickets-2002902038915">Open on Eventbrite →</a>
+        <a class="event-link" href="https://www.eventbrite.com/e/strangers-to-neighbors-tickets-2002902038915">See event details →</a>
       </div>
       <script src="https://www.eventbrite.com/static/widgets/eb_widgets.js"></script>
       <script>
@@ -304,7 +309,7 @@
           widgetType: 'checkout',
           eventId: '2002902038915',
           iframeContainerId: 'eventbrite-widget-container-2002902038915',
-          iframeContainerHeight: 425
+          iframeContainerHeight: 520
         });
       </script>
     </div>
