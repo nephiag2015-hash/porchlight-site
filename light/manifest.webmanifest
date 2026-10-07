@@ -1,0 +1,11 @@
+{
+  "name": "Porch Light",
+  "short_name": "Porch Light",
+  "description": "See whether a friend's porch light is on.",
+  "display": "standalone",
+  "background_color": "#1a1a2e",
+  "theme_color": "#1a1a2e",
+  "icons": [
+    { "src": "/porch-light-icon.png", "sizes": "1024x1024", "type": "image/png", "purpose": "any" }
+  ]
+}

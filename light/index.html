@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Porch Light</title>
+<meta name="description" content="See whether a friend's porch light is on.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#1a1a2e">
+<!-- Home-screen install (iPhone needs this before web push can be turned on) -->
+<link rel="manifest" href="/light/manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Porch Light">
+<link rel="apple-touch-icon" href="/porch-light-icon.png">
+<link rel="icon" type="image/png" href="/porch-light-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --navy:#1a1a2e; --amber:#f4a523; --text:#eaeaf2; --muted:#a8a8bd; --card:#232340; --line:#34345a; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family:'Inter',sans-serif; color:var(--text); background:var(--navy);
+    background:radial-gradient(ellipse at 50% 0%, #2a2a4a 0%, var(--navy) 60%);
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:calc(28px + env(safe-area-inset-top)) 22px 40px; text-align:center;
+    transition:background 0.6s ease;
+  }
+  body.on, body.glow { background:radial-gradient(ellipse at 50% 30%, #3a2e1e 0%, var(--navy) 65%); }
+  .brand { display:flex; align-items:center; gap:10px; color:var(--muted); font-size:.9rem; margin-bottom:34px; text-decoration:none; }
+  .brand img { width:30px; height:30px; border-radius:8px; }
+
+  /* The light itself: a bulb that goes from dim glass to a warm halo. */
+  .lamp { position:relative; width:150px; height:150px; margin-bottom:30px; }
+  .lamp .halo {
+    position:absolute; inset:-60px; border-radius:50%;
+    background:radial-gradient(circle, rgba(244,165,35,0.55) 0%, rgba(244,165,35,0.18) 40%, rgba(244,165,35,0) 70%);
+    opacity:0; transform:scale(0.6); transition:opacity 0.7s ease, transform 0.7s ease;
+  }
+  .lamp .bulb {
+    position:absolute; inset:0; border-radius:50%;
+    background:radial-gradient(circle at 40% 35%, #3a3a5c 0%, #262642 60%, #1f1f38 100%);
+    border:2px solid var(--line); transition:background 0.7s ease, border-color 0.7s ease, box-shadow 0.7s ease;
+  }
+  body.on .lamp .halo, body.glow .lamp .halo { opacity:1; transform:scale(1); }
+  body.on .lamp .bulb, body.glow .lamp .bulb {
+    background:radial-gradient(circle at 40% 35%, #fff2c9 0%, #ffcf5a 45%, var(--amber) 100%);
+    border-color:#ffd77a; box-shadow:0 0 60px 10px rgba(244,165,35,0.45);
+  }
+  body.glow .lamp .halo { animation:breathe 2.6s ease-in-out infinite; }
+  body.glow .lamp .bulb { box-shadow:0 0 90px 22px rgba(244,165,35,0.6); }
+  @keyframes breathe { 0%,100% { transform:scale(1); } 50% { transform:scale(1.18); } }
+  body.loading .lamp { opacity:.5; }
+
+  h1 { font-family:'Fraunces',serif; font-size:clamp(1.6rem,6vw,2.3rem); font-weight:600; line-height:1.2; margin-bottom:10px; min-height:1.2em; }
+  h1 em { font-style:italic; color:var(--amber); }
+  .sub { color:var(--muted); font-size:1.02rem; line-height:1.55; max-width:24rem; margin-bottom:30px; min-height:1.5em; }
+
+  .btn {
+    display:block; width:100%; max-width:22rem; padding:15px 22px; border-radius:14px; border:0;
+    font-family:inherit; font-weight:600; font-size:1.02rem; text-decoration:none; cursor:pointer;
+    margin:0 auto 12px; transition:transform 0.15s ease, background 0.15s ease;
+  }
+  .btn:active { transform:scale(0.98); }
+  .btn-amber { background:var(--amber); color:#1a1a2e; box-shadow:0 10px 30px -10px rgba(244,165,35,0.5); }
+  .btn-amber:hover { background:#ffb733; }
+  .btn-ghost { background:var(--card); color:var(--text); border:1px solid var(--line); }
+  .btn[hidden] { display:none; }
+  .note { color:var(--muted); font-size:.86rem; line-height:1.5; max-width:22rem; margin:-4px auto 16px; }
+  .note b { color:var(--amber); font-weight:600; }
+  .note a { color:var(--amber); }
+  .note[hidden] { display:none; }
+  .how { color:var(--muted); font-size:.9rem; line-height:1.55; max-width:24rem; margin:26px auto 0; }
+  .how b { color:var(--text); font-weight:500; }
+  footer { margin-top:auto; padding-top:30px; color:var(--muted); font-size:.85rem; }
+  footer a { color:var(--muted); }
+</style>
+</head>
+<body class="loading">
+  <a class="brand" href="/"><img src="/porch-light-icon.png" alt=""><span id="brand">Porch Light</span></a>
+
+  <div class="lamp" aria-hidden="true"><div class="halo"></div><div class="bulb"></div></div>
+
+  <h1 id="t1">Checking the light…</h1>
+  <p class="sub" id="sub"></p>
+
+  <button class="btn btn-amber" id="notify" hidden type="button">Tell me when it's on</button>
+  <p class="note" id="notifyNote" hidden></p>
+  <a class="btn btn-ghost" id="textMe" hidden href="#">Text me when it's on</a>
+  <a class="btn btn-ghost" id="getApp" hidden href="#">Get the app</a>
+
+  <p class="how" id="how" hidden></p>
+
+  <footer><a href="/">theporchlightapp.com</a></footer>
+
+<script>
+  var q = new URLSearchParams(location.search);
+  var code = (q.get('f') || '').replace(/[^a-z0-9]/gi, '').toUpperCase();
+  var DB = 'https://rd-place-85a13-default-rtdb.firebaseio.com/lights/' + code + '.json';
+  var SUBSCRIBE_URL = 'https://us-central1-rd-place-85a13.cloudfunctions.net/lightPushSubscribe';
+  var VAPID_PUBLIC_KEY = 'BLKqXnJPR0NDAAQ-NYl2giSHZ4q9pDU1Ost4P8hUWJPuQWe8qZa9d3MzfguufdL-i5Ji3ihnaE-hawwfFww3cW4';
+  var SMS_NUMBER = '+13852432918';
+  var CODES_KEY = 'plLightPushCodes';
+
+  // Localize for the reader: browser language decides, ?l= overrides.
+  var I18N = {
+    en: {
+      checking: 'Checking the light…',
+      missing: "This light isn't shared", missingSub: 'Ask your friend for a fresh link.',
+      off: function (n) { return n + "'s light is <em>off</em>"; }, offSub: 'Not right now. Check back later, or ask to be told when it turns on.',
+      on: function (n) { return n + "'s light is <em>on</em>"; }, onSub: 'Free to talk. Go ahead and call — no need to text first.',
+      glow: function (n) { return n + "'s light is <em>glowing</em>"; }, glowSub: 'Really hoping to talk right now. This is a good moment to call.',
+      notify: "Tell me when it's on", notifyOn: "You'll be told when it's on", stop: 'Stop',
+      notifyBusy: 'One moment…', denied: 'Notifications are blocked for this site in your browser settings.',
+      failed: "Couldn't turn that on. Try again in a moment.",
+      ios: 'On iPhone: tap <b>Share</b>, then <b>Add to Home Screen</b>, and open it from there to turn this on.',
+      text: "Text me when it's on", app: 'Get the app',
+      how: function (n) { return '<b>Porch Light</b> is a porch light for your phone. When ' + n + "'s light is on, they're free for a call. When it's off, they're not — nothing to read into."; }
+    },
+    es: {
+      checking: 'Consultando la luz…',
+      missing: 'Esta luz no está compartida', missingSub: 'Pídele a tu amigo un enlace nuevo.',
+      off: function (n) { return 'La luz de ' + n + ' está <em>apagada</em>'; }, offSub: 'Ahora no. Vuelve más tarde, o pide que te avisen cuando se encienda.',
+      on: function (n) { return 'La luz de ' + n + ' está <em>encendida</em>'; }, onSub: 'Puede hablar. Llama sin más — no hace falta avisar antes.',
+      glow: function (n) { return 'La luz de ' + n + ' está <em>radiante</em>'; }, glowSub: 'Tiene muchas ganas de hablar ahora mismo. Buen momento para llamar.',
+      notify: 'Avísame cuando se encienda', notifyOn: 'Te avisaremos cuando se encienda', stop: 'Parar',
+      notifyBusy: 'Un momento…', denied: 'Las notificaciones están bloqueadas para este sitio en tu navegador.',
+      failed: 'No se pudo activar. Inténtalo de nuevo en un momento.',
+      ios: 'En iPhone: toca <b>Compartir</b>, luego <b>Añadir a pantalla de inicio</b>, y ábrelo desde ahí para activar esto.',
+      text: 'Mándame un SMS cuando se encienda', app: 'Descargar la app',
+      how: function (n) { return '<b>Porch Light</b> es una luz de porche para tu teléfono. Cuando la luz de ' + n + ' está encendida, puede hablar. Cuando está apagada, no — sin nada que interpretar.'; }
+    },
+    pt: {
+      checking: 'Conferindo a luz…',
+      missing: 'Esta luz não está compartilhada', missingSub: 'Peça ao seu amigo um link novo.',
+      off: function (n) { return 'A luz de ' + n + ' está <em>apagada</em>'; }, offSub: 'Agora não. Volte mais tarde, ou peça para ser avisado quando acender.',
+      on: function (n) { return 'A luz de ' + n + ' está <em>acesa</em>'; }, onSub: 'Pode conversar. Pode ligar — não precisa avisar antes.',
+      glow: function (n) { return 'A luz de ' + n + ' está <em>radiante</em>'; }, glowSub: 'Está com muita vontade de conversar agora. Bom momento para ligar.',
+      notify: 'Me avise quando acender', notifyOn: 'Você será avisado quando acender', stop: 'Parar',
+      notifyBusy: 'Um momento…', denied: 'As notificações estão bloqueadas para este site no seu navegador.',
+      failed: 'Não deu para ativar. Tente de novo em instantes.',
+      ios: 'No iPhone: toque em <b>Compartilhar</b>, depois <b>Adicionar à Tela de Início</b>, e abra por lá para ativar isto.',
+      text: 'Me mande um SMS quando acender', app: 'Baixar o app',
+      how: function (n) { return '<b>Porch Light</b> é uma luz de varanda para o seu celular. Quando a luz de ' + n + ' está acesa, dá para ligar. Quando está apagada, não — sem nada a interpretar.'; }
+    },
+    fr: {
+      checking: 'Vérification de la lumière…',
+      missing: "Cette lumière n'est pas partagée", missingSub: 'Demande un nouveau lien à ton ami.',
+      off: function (n) { return 'La lumière de ' + n + ' est <em>éteinte</em>'; }, offSub: "Pas maintenant. Reviens plus tard, ou demande à être prévenu quand elle s'allume.",
+      on: function (n) { return 'La lumière de ' + n + ' est <em>allumée</em>'; }, onSub: "Disponible pour parler. Appelle directement — pas besoin d'écrire avant.",
+      glow: function (n) { return 'La lumière de ' + n + ' <em>brille</em>'; }, glowSub: "Il a très envie de parler en ce moment. C'est le bon moment pour appeler.",
+      notify: "Préviens-moi quand elle s'allume", notifyOn: "Tu seras prévenu quand elle s'allume", stop: 'Arrêter',
+      notifyBusy: 'Un instant…', denied: 'Les notifications sont bloquées pour ce site dans ton navigateur.',
+      failed: "Impossible d'activer. Réessaie dans un instant.",
+      ios: "Sur iPhone : touche <b>Partager</b>, puis <b>Sur l'écran d'accueil</b>, et ouvre-la de là pour activer ceci.",
+      text: "Envoie-moi un SMS quand elle s'allume", app: "Télécharger l'appli",
+      how: function (n) { return "<b>Porch Light</b>, c'est une lumière de porche pour ton téléphone. Quand la lumière de " + n + " est allumée, il est disponible pour un appel. Éteinte, il ne l'est pas — rien à interpréter."; }
+    }
+  };
+  var lang = ((q.get('l') || navigator.language || 'en') + '').toLowerCase().slice(0, 2);
+  var T = I18N[lang] || I18N.en;
+  if (I18N[lang]) document.documentElement.lang = lang;
+
+  var $ = function (id) { return document.getElementById(id); };
+  var row = null;        // mirror row from lights/{code}, null = not shared
+  var loaded = false;
+
+  function stateOf(r) {
+    if (!r) return 'missing';
+    if (typeof r.glowUntil === 'number' && r.glowUntil > Date.now() && r.on) return 'glow';
+    return r.on ? 'on' : 'off';
+  }
+
+  function render() {
+    var state = loaded ? stateOf(row) : 'loading';
+    document.body.className = state;
+    var name = (row && row.name) || '';
+    if (state === 'loading') { $('t1').textContent = T.checking; $('sub').textContent = ''; }
+    else if (state === 'missing') { $('t1').textContent = T.missing; $('sub').textContent = T.missingSub; }
+    else { $('t1').innerHTML = T[state](name); $('sub').textContent = T[state + 'Sub']; }
+    document.title = name ? name + ' — Porch Light' : 'Porch Light';
+    var shared = loaded && !!row;
+    $('textMe').hidden = !shared;
+    $('getApp').hidden = !shared;
+    $('how').hidden = !shared;
+    if (shared) {
+      $('textMe').href = 'sms:' + SMS_NUMBER + '?body=' + encodeURIComponent('LIGHT ' + code);
+      $('getApp').href = '/add/?f=' + code;
+      $('how').innerHTML = T.how(name);
+    }
+    renderNotify(shared);
+  }
+
+  // ---- Live updates: Firebase REST streaming (EventSource), polling fallback.
+  function apply(data) { row = data && typeof data === 'object' ? data : null; loaded = true; render(); }
+  var pollTimer = null;
+  function poll() {
+    if (pollTimer) return;
+    var tick = function () { fetch(DB, { cache: 'no-store' }).then(function (r) { return r.json(); }).then(apply).catch(function () { loaded = true; render(); }); };
+    tick(); pollTimer = setInterval(tick, 30000);
+  }
+  function stream() {
+    if (!('EventSource' in window)) { poll(); return; }
+    var es = new EventSource(DB);
+    es.addEventListener('put', function (e) {
+      var m = JSON.parse(e.data);
+      if (m.path === '/') { apply(m.data); return; }
+      var r = Object.assign({}, row || {}); r[m.path.replace(/^\//, '')] = m.data; apply(r);
+    });
+    es.addEventListener('patch', function (e) { var m = JSON.parse(e.data); apply(Object.assign({}, row || {}, m.data || {})); });
+    es.onerror = function () { es.close(); poll(); };
+  }
+  if (code) stream(); else { loaded = true; render(); }
+  // Glow stamps lapse without a write, so re-check the state on a clock.
+  setInterval(function () { if (loaded) render(); }, 15000);
+  document.addEventListener('visibilitychange', function () { if (!document.hidden && loaded) render(); });
+
+  // ---- "Tell me when it's on": web push. Android Chrome works in the tab;
+  // iPhone only once the page sits on the Home Screen (iOS 16.4+).
+  var isIOS = /iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  var standalone = navigator.standalone === true || (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches);
+  var pushOK = 'serviceWorker' in navigator && 'PushManager' in window && 'Notification' in window;
+  var notifyState = 'idle';   // idle | busy | on | denied | failed | ios
+  var subscribedCodes = [];
+  try { subscribedCodes = JSON.parse(localStorage.getItem(CODES_KEY) || '[]'); } catch (e) { subscribedCodes = []; }
+  function saveCodes() { try { localStorage.setItem(CODES_KEY, JSON.stringify(subscribedCodes)); } catch (e) { /* fine */ } }
+
+  function renderNotify(shared) {
+    var btn = $('notify'), note = $('notifyNote');
+    var show = shared && (pushOK || isIOS);
+    btn.hidden = !show; note.hidden = true;
+    if (!show) return;
+    if (!pushOK && isIOS) { note.innerHTML = T.ios; note.hidden = false; btn.hidden = true; return; }
+    if (notifyState === 'on') { btn.textContent = T.notifyOn + ' · ' + T.stop; btn.className = 'btn btn-ghost'; return; }
+    btn.className = 'btn btn-amber';
+    btn.textContent = notifyState === 'busy' ? T.notifyBusy : T.notify;
+    if (notifyState === 'denied') { note.textContent = T.denied; note.hidden = false; }
+    if (notifyState === 'failed') { note.textContent = T.failed; note.hidden = false; }
+  }
+
+  function urlBase64ToUint8Array(s) {
+    var pad = '='.repeat((4 - s.length % 4) % 4);
+    var raw = atob((s + pad).replace(/-/g, '+').replace(/_/g, '/'));
+    var out = new Uint8Array(raw.length);
+    for (var i = 0; i < raw.length; i++) out[i] = raw.charCodeAt(i);
+    return out;
+  }
+  function post(body) {
+    return fetch(SUBSCRIBE_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
+      .then(function (r) { if (!r.ok) throw new Error('subscribe ' + r.status); return r.json(); });
+  }
+  function getSub() {
+    return navigator.serviceWorker.register('/light/sw.js', { scope: '/light/' })
+      .then(function () { return navigator.serviceWorker.ready; })
+      .then(function (reg) { return reg.pushManager.getSubscription().then(function (s) { return { reg: reg, sub: s }; }); });
+  }
+
+  // Already subscribed on this phone? Reflect it without asking for anything.
+  if (pushOK && code && subscribedCodes.indexOf(code) !== -1 && Notification.permission === 'granted') {
+    navigator.serviceWorker.getRegistration('/light/').then(function (reg) {
+      return reg ? reg.pushManager.getSubscription() : null;
+    }).then(function (s) { if (s) { notifyState = 'on'; render(); } }).catch(function () { /* stay idle */ });
+  }
+
+  $('notify').addEventListener('click', function () {
+    if (notifyState === 'busy') return;
+    if (notifyState === 'on') { unsubscribe(); return; }
+    notifyState = 'busy'; render();
+    Notification.requestPermission().then(function (perm) {
+      if (perm !== 'granted') { notifyState = 'denied'; render(); return; }
+      return getSub().then(function (r) {
+        return r.sub || r.reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY) });
+      }).then(function (sub) {
+        return post({ code: code, subscription: sub.toJSON(), lang: lang, action: 'subscribe' });
+      }).then(function () {
+        if (subscribedCodes.indexOf(code) === -1) subscribedCodes.push(code);
+        saveCodes(); notifyState = 'on'; render();
+      });
+    }).catch(function () { notifyState = 'failed'; render(); });
+  });
+
+  function unsubscribe() {
+    notifyState = 'busy'; render();
+    getSub().then(function (r) {
+      if (!r.sub) return null;
+      return post({ code: code, subscription: { endpoint: r.sub.endpoint }, action: 'unsubscribe' }).then(function () {
+        subscribedCodes = subscribedCodes.filter(function (c) { return c !== code; });
+        saveCodes();
+        // Last light on this phone? Drop the browser subscription too.
+        if (!subscribedCodes.length) return r.sub.unsubscribe();
+        return null;
+      });
+    }).then(function () { notifyState = 'idle'; render(); })
+      .catch(function () { notifyState = 'failed'; render(); });
+  }
+
+  render();
+</script>
+</body>
+</html>
