@@ -19,12 +19,10 @@
     font-family:'Inter',sans-serif; color:var(--text); background:var(--navy);
     background:radial-gradient(ellipse at 50% 0%, #2a2a4a 0%, var(--navy) 60%);
     min-height:100vh; display:flex; flex-direction:column; align-items:center;
-    padding:calc(28px + env(safe-area-inset-top)) 22px 40px; text-align:center;
+    padding:calc(64px + env(safe-area-inset-top)) 22px 40px; text-align:center;
     transition:background 0.6s ease;
   }
   body.on, body.glow { background:radial-gradient(ellipse at 50% 30%, #3a2e1e 0%, var(--navy) 65%); }
-  .brand { display:flex; align-items:center; gap:10px; color:var(--muted); font-size:.9rem; margin-bottom:34px; text-decoration:none; }
-  .brand img { width:30px; height:30px; border-radius:8px; }
 
   /* The light itself — the same bulb as the app's Home screen: a 156px disc
      with the 💡 inside, dim glass when off, solid amber with a gold ring when
@@ -61,25 +59,33 @@
     margin:0 auto 12px; transition:transform 0.15s ease, background 0.15s ease;
   }
   .btn:active { transform:scale(0.98); }
-  .btn-ghost { background:var(--card); color:var(--text); border:1px solid var(--line); }
   .btn[hidden] { display:none; }
-  .how { color:var(--muted); font-size:.9rem; line-height:1.55; max-width:24rem; margin:26px auto 0; }
-  .how b { color:var(--text); font-weight:500; }
+  .btn-amber { background:var(--amber); color:#1a1a2e; box-shadow:0 10px 30px -10px rgba(244,165,35,0.5); }
+  .btn-amber:hover { background:#ffb733; }
+  .cta {
+    width:100%; max-width:24rem; margin:18px auto 0; padding:22px 20px 10px;
+    background:var(--card); border:1px solid var(--line); border-radius:18px;
+  }
+  .cta[hidden] { display:none; }
+  .cta-title { font-family:'Fraunces',serif; font-size:1.3rem; font-weight:600; line-height:1.25; margin-bottom:8px; }
+  .cta-body { color:var(--muted); font-size:.95rem; line-height:1.55; margin-bottom:18px; }
+  .cta-body b { color:var(--text); font-weight:500; }
   footer { margin-top:auto; padding-top:30px; color:var(--muted); font-size:.85rem; }
   footer a { color:var(--muted); }
 </style>
 </head>
 <body class="loading">
-  <a class="brand" href="/"><img src="/porch-light-icon.png" alt=""><span id="brand">Porch Light</span></a>
-
   <div class="lamp" aria-hidden="true"><div class="halo"></div><div class="bulb"><span>💡</span></div></div>
 
   <h1 id="t1">Checking the light…</h1>
   <p class="sub" id="sub"></p>
 
-  <a class="btn btn-ghost" id="getApp" hidden href="#">Get the app</a>
-
-  <p class="how" id="how" hidden></p>
+  <!-- The pitch: the page makes you check; the app tells you. -->
+  <div class="cta" id="cta" hidden>
+    <p class="cta-title" id="ctaTitle"></p>
+    <p class="cta-body" id="ctaBody"></p>
+    <a class="btn btn-amber" id="getApp" href="#"></a>
+  </div>
 
   <footer><a href="/">theporchlightapp.com</a></footer>
 
@@ -96,8 +102,9 @@
       off: function (n) { return n + "'s light is <em>off</em>"; }, offSub: 'Not right now. Check back later.',
       on: function (n) { return n + "'s light is <em>on</em>"; }, onSub: 'Free to talk. Go ahead and call — no need to text first.',
       glow: function (n) { return n + "'s light is <em>glowing</em>"; }, glowSub: 'Really hoping to talk right now. This is a good moment to call.',
-      app: 'Get the app',
-      how: function (n) { return '<b>Porch Light</b> is a porch light for your phone. When ' + n + "'s light is on, they're free for a call. When it's off, they're not — nothing to read into."; }
+      ctaTitle: 'Tired of checking back?',
+      ctaBody: function (n) { return 'With the app, the moment you and ' + n + " are both free, it tells you. <b>No checking, no texting first.</b>"; },
+      app: 'Get Porch Light'
     },
     es: {
       checking: 'Consultando la luz…',
@@ -105,8 +112,9 @@
       off: function (n) { return 'La luz de ' + n + ' está <em>apagada</em>'; }, offSub: 'Ahora no. Vuelve más tarde.',
       on: function (n) { return 'La luz de ' + n + ' está <em>encendida</em>'; }, onSub: 'Puede hablar. Llama sin más — no hace falta avisar antes.',
       glow: function (n) { return 'La luz de ' + n + ' está <em>radiante</em>'; }, glowSub: 'Tiene muchas ganas de hablar ahora mismo. Buen momento para llamar.',
-      app: 'Descargar la app',
-      how: function (n) { return '<b>Porch Light</b> es una luz de porche para tu teléfono. Cuando la luz de ' + n + ' está encendida, puede hablar. Cuando está apagada, no — sin nada que interpretar.'; }
+      ctaTitle: '¿Cansado de volver a mirar?',
+      ctaBody: function (n) { return 'Con la app, en cuanto tú y ' + n + ' estén libres a la vez, te avisa. <b>Sin mirar, sin avisar antes.</b>'; },
+      app: 'Descargar Porch Light'
     },
     pt: {
       checking: 'Conferindo a luz…',
@@ -114,8 +122,9 @@
       off: function (n) { return 'A luz de ' + n + ' está <em>apagada</em>'; }, offSub: 'Agora não. Volte mais tarde.',
       on: function (n) { return 'A luz de ' + n + ' está <em>acesa</em>'; }, onSub: 'Pode conversar. Pode ligar — não precisa avisar antes.',
       glow: function (n) { return 'A luz de ' + n + ' está <em>radiante</em>'; }, glowSub: 'Está com muita vontade de conversar agora. Bom momento para ligar.',
-      app: 'Baixar o app',
-      how: function (n) { return '<b>Porch Light</b> é uma luz de varanda para o seu celular. Quando a luz de ' + n + ' está acesa, dá para ligar. Quando está apagada, não — sem nada a interpretar.'; }
+      ctaTitle: 'Cansado de ficar conferindo?',
+      ctaBody: function (n) { return 'Com o app, assim que você e ' + n + ' estiverem livres ao mesmo tempo, ele avisa. <b>Sem conferir, sem avisar antes.</b>'; },
+      app: 'Baixar o Porch Light'
     },
     fr: {
       checking: 'Vérification de la lumière…',
@@ -123,8 +132,9 @@
       off: function (n) { return 'La lumière de ' + n + ' est <em>éteinte</em>'; }, offSub: 'Pas maintenant. Reviens plus tard.',
       on: function (n) { return 'La lumière de ' + n + ' est <em>allumée</em>'; }, onSub: "Disponible pour parler. Appelle directement — pas besoin d'écrire avant.",
       glow: function (n) { return 'La lumière de ' + n + ' <em>brille</em>'; }, glowSub: "Il a très envie de parler en ce moment. C'est le bon moment pour appeler.",
-      app: "Télécharger l'appli",
-      how: function (n) { return "<b>Porch Light</b>, c'est une lumière de porche pour ton téléphone. Quand la lumière de " + n + " est allumée, il est disponible pour un appel. Éteinte, il ne l'est pas — rien à interpréter."; }
+      ctaTitle: 'Fatigué de revenir vérifier ?',
+      ctaBody: function (n) { return "Avec l'appli, dès que toi et " + n + ' êtes libres en même temps, elle te prévient. <b>Sans vérifier, sans écrire avant.</b>'; },
+      app: 'Télécharger Porch Light'
     }
   };
   var lang = ((q.get('l') || navigator.language || 'en') + '').toLowerCase().slice(0, 2);
@@ -150,12 +160,12 @@
     else { $('t1').innerHTML = T[state](name); $('sub').textContent = T[state + 'Sub']; }
     document.title = name ? name + ' — Porch Light' : 'Porch Light';
     var shared = loaded && !!row;
-    $('getApp').hidden = !shared;
-    $('how').hidden = !shared;
+    $('cta').hidden = !shared;
     if (shared) {
-      $('getApp').href = '/add/?f=' + code;
+      $('ctaTitle').textContent = T.ctaTitle;
+      $('ctaBody').innerHTML = T.ctaBody(name);
       $('getApp').textContent = T.app;
-      $('how').innerHTML = T.how(name);
+      $('getApp').href = '/add/?f=' + code;
     }
   }
 
