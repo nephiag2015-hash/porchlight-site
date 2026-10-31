@@ -120,6 +120,8 @@
     .pillar q { quotes: "“" "”"; font-style: italic; font-weight: 400; color: #c2c2d6; }
     .pillar em { color: #f4a523; font-style: italic; }
     .plans .pillar { min-height: 0; }
+    .plans .pic-phone { display: flex; align-items: center; justify-content: center; background: #16162a; padding: 26px 0; }
+    .plans .pic-phone img { width: auto; max-width: 74%; height: auto; border-radius: 22px; border: 2px solid #34345e; }
 
     /* Built for real life */
     .notes { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px 36px; margin-top: 10px; }
@@ -268,6 +270,8 @@
       section h2 { font-size: 1.75rem; }
       .pillar, .pillar:nth-child(2) { flex-direction: column; min-height: 0; }
       .pillar .pic { flex: none; height: 220px; }
+      .plans .pic-phone { height: auto; padding: 22px 0; }
+      .plans .pic-phone img { max-width: 62%; }
       .pillar .body { padding: 28px 24px; }
     }
 
@@ -408,6 +412,7 @@
       <div class="pillars">
 
         <div class="pillar">
+          <div class="pic"><img src="friends-lit.jpg" alt="Four friends as avatars, three with a glowing amber ring because their lights are on and one dark" style="object-position: center;"></div>
           <div class="body">
             <span class="pillar-tag">Friends &middot; Free</span>
             <h3>Know the moment a friend is free.</h3>
@@ -416,18 +421,11 @@
         </div>
 
         <div class="pillar">
+          <div class="pic pic-phone"><img src="circle-screen.jpg" alt="A circle in the Porch Light app: a grid of members, each with an amber ring because their light is on"></div>
           <div class="body">
             <span class="pillar-tag">Circles &middot; Free to join</span>
             <h3>For the communities you belong to.</h3>
-            <p>Join a recovery group, a mastermind or a neighborhood, and see whose light is on. Show your light to one circle and not another. Start up to three circles of your own, free. <em>Like knowing which porch lights are lit on your street.</em></p>
-          </div>
-        </div>
-
-        <div class="pillar">
-          <div class="body">
-            <span class="pillar-tag">Premium</span>
-            <h3>Call without handing out your number.</h3>
-            <p>Calls go over the internet, voice or video, and your number stays private. Plus tools for people who run circles: scheduled group calls (everyone on the call needs Premium), a work room, the Community Dashboard, and unlimited circles. Premium is coming soon. <em>Like hosting from the porch without giving out your address.</em></p>
+            <p>Join a recovery group, a mastermind or a neighborhood. See whose light is on, and show yours to one circle and not another, free. Premium is for the calls: over the internet so your number stays private, plus scheduled group calls, a work room and the Community Dashboard. Premium is coming soon. <em>Like knowing which porch lights are lit on your street.</em></p>
           </div>
         </div>
 
