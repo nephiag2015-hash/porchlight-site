@@ -57,6 +57,12 @@
     .btn-fill { background: #f4a523; color: #1a1a2e; box-shadow: 0 10px 30px -10px rgba(244,165,35,0.5); }
     .btn-line { border: 2px solid #f4a523; color: #f4a523; }
     .btn:hover { text-decoration: none; filter: brightness(1.08); }
+    @media (max-width: 600px) {
+      .strip { display: block; padding-top: 18px; }
+      .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
+      .actions .btn { text-align: center; padding: 12px 10px; }
+      .actions .btn-fill { grid-column: 1 / -1; }
+    }
 
     /* Main grid: content left, RSVP right (sticky) on desktop; one column on phones */
     .grid { display: grid; grid-template-columns: minmax(0, 1fr) 400px; column-gap: 48px; align-items: start; padding-bottom: 20px; }
@@ -72,12 +78,10 @@
     .section-label::before, .section-label::after { content: ''; flex: 1; height: 1px; background: rgba(244,165,35,0.4); }
 
     /* Note from Angel */
-    .note { display: flex; gap: 18px; align-items: flex-start; margin-top: 36px; padding: 22px;
-            background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; }
-    .note img { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; object-position: 50% 40%;
-                flex-shrink: 0; border: 2px solid #f4a523; }
+    .note { margin-top: 36px; padding: 22px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; overflow: hidden; }
+    .note img { float: left; width: 96px; height: 96px; border-radius: 50%; object-fit: cover; object-position: 50% 40%; margin: 4px 16px 6px 0; border: 2px solid #f4a523; shape-outside: circle(50%); }
     .note p { font-family: 'Fraunces', Georgia, serif; font-size: 1.08rem; color: #e6e6ee; line-height: 1.55; }
-    .note .sig { margin-top: 8px; color: #f4a523; font-style: italic; }
+    .note .sig { margin-top: 10px; color: #f4a523; font-style: italic; font-size: 0.98rem; clear: both; }
 
     /* Details */
     .details { display: grid; gap: 20px; }
