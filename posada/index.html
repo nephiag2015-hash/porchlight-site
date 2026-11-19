@@ -92,11 +92,14 @@
     @media (max-width: 480px) { .row { grid-template-columns: 1fr; gap: 2px; } .row dt { padding-top: 0; } }
 
     /* Good to know */
-    .know { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .know li { background: rgba(244,165,35,0.08); border: 1px solid rgba(244,165,35,0.25); border-radius: 12px;
-               padding: 14px 16px; color: #d6d6e4; font-size: 0.98rem; line-height: 1.4; }
-    .know b { display: block; color: #fff; font-size: 1.02rem; margin-bottom: 2px; }
-    @media (max-width: 480px) { .know { grid-template-columns: 1fr; } }
+    .know { list-style: none; display: grid; gap: 0; }
+    .know li { display: grid; grid-template-columns: 28px 1fr; gap: 12px; align-items: start; padding: 14px 0;
+               border-bottom: 1px solid rgba(255,255,255,0.08); color: #c2c2d6; font-size: 1rem; line-height: 1.45; }
+    .know li:first-child { padding-top: 0; }
+    .know li:last-child { border-bottom: 0; padding-bottom: 0; }
+    .know li::before { content: "\2713"; display: flex; align-items: center; justify-content: center; width: 24px; height: 24px;
+                       margin-top: 1px; border-radius: 50%; background: rgba(244,165,35,0.16); color: #f4a523; font-size: 0.8rem; font-weight: 700; }
+    .know b { display: block; color: #fff; font-family: "Fraunces", Georgia, serif; font-weight: 500; font-size: 1.15rem; line-height: 1.3; }
 
     /* The night */
     .agenda { list-style: none; display: grid; gap: 12px; }
@@ -173,10 +176,10 @@
       <section>
         <div class="section-label">Good to know</div>
         <ul class="know">
-          <li><b>It's free</b>An optional $10 chip-in for ponche, if you like.</li>
-          <li><b>Come alone or bring a friend</b>Most people won't know anyone. That's the point.</li>
-          <li><b>No app needed</b>You don't need Porch Light to come.</li>
-          <li><b>50 spots</b>RSVP so we have a lantern for you.</li>
+          <li><span><b>It's free</b>An optional $10 chip-in for ponche, if you like.</span></li>
+          <li><span><b>Come alone or bring a friend</b>Most people won't know anyone. That's the point.</span></li>
+          <li><span><b>No app needed</b>You don't need Porch Light to come.</span></li>
+          <li><span><b>50 spots</b>RSVP so we have a lantern for you.</span></li>
         </ul>
       </section>
 
