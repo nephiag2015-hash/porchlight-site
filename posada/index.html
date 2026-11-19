@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>A Porch Light Posada · Thu, Dec 10</title>
-  <meta name="description" content="Strangers to Neighbors: a Porch Light posada. Ponche, pan dulce and games that get strangers talking. Thursday, Dec 10, 7:30–9 PM at Kiln Holladay. Free RSVP.">
-  <meta property="og:title" content="Strangers to Neighbors: A Porch Light Posada">
+  <meta name="description" content="A Porch Light Posada: ponche, pan dulce and games that get strangers talking. Thursday, Dec 10, 7:30–9 PM at Kiln Holladay. Free RSVP.">
+  <meta property="og:title" content="A Porch Light Posada · Thu, Dec 10">
   <meta property="og:description" content="Ponche, pan dulce and games that get strangers talking. Thu, Dec 10 · 7:30–9 PM · Kiln Holladay. Free RSVP.">
   <meta property="og:image" content="https://theporchlightapp.com/posada/posada-cover.png">
   <meta property="og:url" content="https://theporchlightapp.com/posada/">
@@ -24,103 +24,194 @@
     }
     a { color: #f4a523; text-decoration: none; }
     a:hover { text-decoration: underline; }
-    .wrap { max-width: 720px; margin: 0 auto; padding: 0 16px; }
-    h1, h2, .serif { font-family: 'Fraunces', Georgia, serif; font-weight: 500; letter-spacing: -0.01em; }
+    .wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+    h1, h2 { font-family: 'Fraunces', Georgia, serif; font-weight: 600; letter-spacing: -0.01em; }
+    .serif { font-family: 'Fraunces', Georgia, serif; }
 
-    .top { display: flex; align-items: center; gap: 10px; padding: 18px 0; color: #f4a523;
-           font-size: 0.78rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; }
-    .top img { width: 32px; height: 32px; border-radius: 8px; }
-    .top a { color: inherit; display: flex; align-items: center; gap: 10px; }
+    /* Top + title */
+    .top { display: flex; align-items: center; padding: 18px 0; }
+    .top a { display: flex; align-items: center; gap: 10px; color: #f4a523; font-size: 0.78rem;
+             font-weight: 700; letter-spacing: 3px; text-transform: uppercase; }
     .top a:hover { text-decoration: none; }
-
+    .top img { width: 32px; height: 32px; border-radius: 8px; }
     .kicker { color: #f4a523; font-size: 0.82rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; }
-    h1 { font-size: clamp(2.3rem, 9vw, 3.6rem); line-height: 1.05; color: #fff; margin: 8px 0 12px; font-weight: 600; }
+    h1 { font-size: clamp(2.3rem, 8vw, 4rem); line-height: 1.05; color: #fff; margin: 8px 0 12px; }
     h1 span { color: #f4a523; }
-    .def { font-family: 'Fraunces', Georgia, serif; font-size: 1.1rem; color: #d6d6e4; margin-bottom: 22px; }
+    .def { font-family: 'Fraunces', Georgia, serif; font-size: 1.1rem; color: #d6d6e4; margin-bottom: 22px; max-width: 40rem; }
     .def b { color: #f4a523; font-weight: 500; }
 
-    .art { border: 1px solid rgba(244,165,35,0.45); border-radius: 12px; overflow: hidden; line-height: 0; }
+    /* Art: boxed on desktop, edge to edge on phones */
+    .art { max-width: 1008px; margin: 0 auto; border: 1px solid rgba(244,165,35,0.45);
+           border-radius: 12px; overflow: hidden; line-height: 0; }
     .art img { width: 100%; height: auto; display: block; }
+    @media (max-width: 1040px) { .art { margin: 0 16px; } }
+    @media (max-width: 600px) { .art { margin: 0; border-radius: 0; border-left: 0; border-right: 0; } }
 
-    .cta { display: flex; flex-wrap: wrap; gap: 12px; margin: 22px 0 6px; }
-    .btn { display: inline-block; padding: 14px 26px; border-radius: 999px; font-weight: 700; font-size: 1.02rem; }
+    /* When / where strip */
+    .strip { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;
+             padding: 22px 0 8px; }
+    .strip-text { font-family: 'Fraunces', Georgia, serif; font-size: 1.35rem; color: #fff; line-height: 1.35; }
+    .strip-text small { display: block; font-size: 1rem; color: #c2c2d6; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; }
+    .btn { display: inline-block; padding: 12px 22px; border-radius: 999px; font-weight: 700; font-size: 0.98rem; }
     .btn-fill { background: #f4a523; color: #1a1a2e; box-shadow: 0 10px 30px -10px rgba(244,165,35,0.5); }
     .btn-line { border: 2px solid #f4a523; color: #f4a523; }
     .btn:hover { text-decoration: none; filter: brightness(1.08); }
+
+    /* Main grid: content left, RSVP right (sticky) on desktop; one column on phones */
+    .grid { display: grid; grid-template-columns: minmax(0, 1fr) 400px; column-gap: 48px; align-items: start; padding-bottom: 20px; }
+    .grid > * { grid-column: 1; }
+    .grid > .rsvp { grid-column: 2; grid-row: 1 / span 6; position: sticky; top: 20px; margin-top: 44px; }
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: minmax(0, 1fr); }
+      .grid > .rsvp { grid-column: 1; grid-row: auto; position: static; }
+    }
 
     .section-label { display: flex; align-items: center; gap: 14px; color: #f4a523; font-size: 0.8rem; font-weight: 700;
                      letter-spacing: 3px; text-transform: uppercase; margin: 44px 0 18px; }
     .section-label::before, .section-label::after { content: ''; flex: 1; height: 1px; background: rgba(244,165,35,0.4); }
 
-    .details { display: grid; gap: 22px; }
+    /* Note from Angel */
+    .note { display: flex; gap: 18px; align-items: flex-start; margin-top: 36px; padding: 22px;
+            background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; }
+    .note img { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; object-position: 50% 30%;
+                flex-shrink: 0; border: 2px solid #f4a523; }
+    .note p { font-family: 'Fraunces', Georgia, serif; font-size: 1.08rem; color: #e6e6ee; line-height: 1.55; }
+    .note .sig { margin-top: 8px; color: #f4a523; font-style: italic; }
+
+    /* Details */
+    .details { display: grid; gap: 20px; }
     .row { display: grid; grid-template-columns: 90px 1fr; gap: 12px; }
     .row dt { color: #f4a523; font-size: 0.8rem; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; padding-top: 6px; }
-    .row dd .big { font-family: 'Fraunces', Georgia, serif; font-size: 1.45rem; color: #fff; line-height: 1.25; display: block; }
+    .row dd .big { font-family: 'Fraunces', Georgia, serif; font-size: 1.4rem; color: #fff; line-height: 1.25; display: block; }
     .row dd .small { font-family: 'Fraunces', Georgia, serif; color: #c2c2d6; font-size: 1.02rem; }
     @media (max-width: 480px) { .row { grid-template-columns: 1fr; gap: 2px; } .row dt { padding-top: 0; } }
 
+    /* Good to know */
+    .know { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .know li { background: rgba(244,165,35,0.08); border: 1px solid rgba(244,165,35,0.25); border-radius: 12px;
+               padding: 14px 16px; color: #d6d6e4; font-size: 0.98rem; line-height: 1.4; }
+    .know b { display: block; color: #fff; font-size: 1.02rem; margin-bottom: 2px; }
+    @media (max-width: 480px) { .know { grid-template-columns: 1fr; } }
+
+    /* The night */
     .agenda { list-style: none; display: grid; gap: 12px; }
-    .agenda li { display: grid; grid-template-columns: 70px 1fr; gap: 12px; color: #d6d6e4; }
+    .agenda li { display: grid; grid-template-columns: 60px 1fr; gap: 12px; color: #d6d6e4; }
     .agenda b { color: #f4a523; font-weight: 700; }
 
-    .rsvp-frame { background: #fff; border-radius: 16px; overflow: hidden; }
+    /* RSVP */
+    .rsvp h2 { font-size: 1.6rem; color: #fff; margin-bottom: 4px; }
+    .rsvp .spots { color: #c2c2d6; margin-bottom: 14px; }
+    .rsvp-frame { background: #fff; border-radius: 16px; overflow: hidden; min-height: 200px; }
+    .rsvp .alt { text-align: center; margin-top: 12px; font-size: 0.95rem; }
 
-    .flyer img { width: 100%; height: auto; border-radius: 10px; display: block; }
-    .flyer p { text-align: center; margin-top: 12px; }
+    /* Small flyer */
+    .flyer { display: flex; gap: 18px; align-items: center; }
+    .flyer img { width: 120px; height: auto; border-radius: 8px; flex-shrink: 0; border: 1px solid rgba(255,255,255,0.12); }
+    .flyer p { color: #c2c2d6; }
 
-    footer { text-align: center; padding: 44px 0 50px; color: #9a9ab2; font-size: 0.95rem; }
-    footer .host { color: #e6e6ee; font-family: 'Fraunces', Georgia, serif; font-size: 1.05rem; }
-    footer .tag { color: #f4a523; font-family: 'Fraunces', Georgia, serif; font-style: italic; margin-top: 4px; }
+    footer { text-align: center; padding: 44px 16px 110px; color: #9a9ab2; font-size: 0.95rem; }
+    footer .tag { color: #f4a523; font-family: 'Fraunces', Georgia, serif; font-style: italic; margin-bottom: 8px; font-size: 1.1rem; }
+
+    /* Sticky RSVP bar (phones only, hides when the RSVP box is on screen) */
+    .bar { display: none; }
+    @media (max-width: 900px) {
+      .bar { display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 10; gap: 12px; align-items: center;
+             justify-content: space-between; padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+             background: rgba(20,20,36,0.96); border-top: 1px solid rgba(244,165,35,0.35);
+             transition: transform 0.25s ease; }
+      .bar.hide { transform: translateY(110%); }
+      .bar span { color: #e6e6ee; font-size: 0.92rem; line-height: 1.3; }
+      .bar span b { color: #fff; display: block; }
+      .bar .btn { padding: 11px 22px; white-space: nowrap; }
+    }
   </style>
 </head>
 <body>
   <div class="wrap">
     <div class="top"><a href="/"><img src="../porch-light-icon.png" alt="">Porch Light</a></div>
-
     <span class="kicker">Strangers to Neighbors</span>
     <h1>A Porch Light <span>Posada</span></h1>
     <p class="def"><b>Posada:</b> a Christmas tradition where neighbors go door to door until someone lets them in.</p>
+  </div>
 
-    <div class="art"><img src="posada-art.svg" alt="A glowing adobe casita with an open door, papel picado, farolitos and a guiding star"></div>
+  <div class="art"><img src="posada-art.svg" alt="A glowing adobe casita with an open door, papel picado, farolitos and a guiding star"></div>
 
-    <div class="cta">
-      <a class="btn btn-fill" href="#rsvp">RSVP free</a>
-      <a class="btn btn-line" href="https://maps.google.com/?q=Kiln+Holladay,+1895+E+Rodeo+Walk+Dr,+Suite+200,+Holladay,+UT+84117">Get directions</a>
+  <div class="wrap">
+    <div class="strip">
+      <div class="strip-text">Thu, Dec 10 · 7:30–9 PM<small>Kiln Holladay · Free parking</small></div>
+      <div class="actions">
+        <a class="btn btn-fill" href="#rsvp">RSVP free</a>
+        <a class="btn btn-line" id="cal" href="posada.ics">Add to calendar</a>
+        <a class="btn btn-line" href="https://maps.google.com/?q=Kiln+Holladay,+1895+E+Rodeo+Walk+Dr,+Suite+200,+Holladay,+UT+84117">Directions</a>
+      </div>
     </div>
 
-    <div class="section-label">The details</div>
-    <dl class="details">
-      <div class="row"><dt>Who</dt><dd><span class="big">Friends of Friends</span><span class="small">Anyone who values friendship and community.</span></dd></div>
-      <div class="row"><dt>What</dt><dd><span class="big">Ponche, Pan Dulce and Games That Get Strangers Talking</span></dd></div>
-      <div class="row"><dt>When</dt><dd><span class="big">Thursday, Dec 10 · 7:30–9 PM</span></dd></div>
-      <div class="row"><dt>Where</dt><dd><span class="big">Kiln Holladay</span><span class="small">1895 E Rodeo Walk Dr, Suite 200, Holladay, UT · Free parking</span></dd></div>
-      <div class="row"><dt>Why</dt><dd><span class="big">Porch Light App Launch</span><span class="small">Launching the app that keeps neighbors connected this holiday season</span></dd></div>
-    </dl>
+    <main class="grid">
+      <div class="note">
+        <img src="angel.jpg" alt="Angel Gomez">
+        <div>
+          <p>Hey, I'm Angel. I started Porch Light because I'd go weeks without talking to people I care about. This is a night to meet a few new people and maybe call an old friend on the drive home. Come alone or bring someone. I'll be at the door.</p>
+          <p class="sig">Angel (aka Nephi) Gomez · Porch Light Founder</p>
+        </div>
+      </div>
 
-    <div class="section-label">The night</div>
-    <ul class="agenda">
-      <li><b>7:30</b><span>Ponche, pan dulce and a game of bingo that gets strangers talking</span></li>
-      <li><b>8:00</b><span>A short look at Porch Light</span></li>
-      <li><b>8:30</b><span>Paper lanterns to take home for your porch</span></li>
-      <li><b>9:00</b><span>Goodnight</span></li>
-    </ul>
+      <section>
+        <div class="section-label">The details</div>
+        <dl class="details">
+          <div class="row"><dt>Who</dt><dd><span class="big">Friends of Friends</span><span class="small">Anyone who values friendship and community.</span></dd></div>
+          <div class="row"><dt>What</dt><dd><span class="big">Ponche, Pan Dulce and Games That Get Strangers Talking</span></dd></div>
+          <div class="row"><dt>Where</dt><dd><span class="big">Kiln Holladay</span><span class="small">1895 E Rodeo Walk Dr, Suite 200, Holladay, UT · Free parking</span></dd></div>
+          <div class="row"><dt>Why</dt><dd><span class="big">Porch Light App Launch</span><span class="small">Launching the app that keeps neighbors connected this holiday season</span></dd></div>
+        </dl>
+      </section>
 
-    <div class="section-label" id="rsvp">RSVP</div>
-    <div class="rsvp-frame" id="eventbrite-widget-container-2004732345411"></div>
-    <p style="text-align:center;margin-top:14px"><a href="https://www.eventbrite.com/e/strangers-to-neighbors-a-porch-light-posada-tickets-2004732345411">Open on Eventbrite →</a></p>
+      <section>
+        <div class="section-label">Good to know</div>
+        <ul class="know">
+          <li><b>It's free</b>An optional $10 chip-in for ponche, if you like.</li>
+          <li><b>Come alone or bring a friend</b>Most people won't know anyone. That's the point.</li>
+          <li><b>No app needed</b>You don't need Porch Light to come.</li>
+          <li><b>50 spots</b>RSVP so we have a lantern for you.</li>
+        </ul>
+      </section>
 
-    <div class="section-label">The flyer</div>
-    <div class="flyer">
-      <img src="posada-flyer.png" alt="Strangers to Neighbors flyer: Thursday, Dec 10, 7:30–9 PM, Kiln Holladay" loading="lazy">
-      <p><a href="posada-flyer.png" download>Download the flyer</a> to text a friend.</p>
-    </div>
+      <aside class="rsvp" id="rsvp">
+        <div class="section-label">RSVP</div>
+        <h2>Save your spot</h2>
+        <p class="spots">Free · 50 spots · Thu, Dec 10</p>
+        <div class="rsvp-frame" id="eventbrite-widget-container-2004732345411"></div>
+        <p class="alt"><a href="https://www.eventbrite.com/e/strangers-to-neighbors-a-porch-light-posada-tickets-2004732345411">Open on Eventbrite →</a></p>
+      </aside>
 
-    <footer>
-      <div class="host">Organized by Angel (aka Nephi) Gomez · Porch Light Founder</div>
-      <div style="margin-top:6px">Bring a canned good for the food bank if you can. No pressure.</div>
-      <div class="tag">Keep the light on.</div>
-      <div style="margin-top:10px"><a href="/">theporchlightapp.com</a> · <a href="https://instagram.com/porchlight.app">@porchlight.app</a></div>
-    </footer>
+      <section>
+        <div class="section-label">The night</div>
+        <ul class="agenda">
+          <li><b>7:30</b><span>Ponche, pan dulce and a game of bingo that gets strangers talking</span></li>
+          <li><b>8:00</b><span>A short look at Porch Light</span></li>
+          <li><b>8:30</b><span>Paper lanterns to take home for your porch</span></li>
+          <li><b>9:00</b><span>Goodnight</span></li>
+        </ul>
+      </section>
+
+      <section>
+        <div class="section-label">Invite someone</div>
+        <div class="flyer">
+          <a href="posada-flyer.png"><img src="posada-flyer.png" alt="Posada flyer" loading="lazy"></a>
+          <p>Bring a canned good for the food bank if you can. No pressure.<br><a href="posada-flyer.png" download>Download the flyer</a> to text a friend.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer>
+    <div class="tag">Keep the light on.</div>
+    <a href="/">theporchlightapp.com</a> · <a href="https://instagram.com/porchlight.app">@porchlight.app</a>
+  </footer>
+
+  <div class="bar" id="bar">
+    <span><b>Thu, Dec 10 · 7:30 PM</b>Kiln Holladay · Free</span>
+    <a class="btn btn-fill" href="#rsvp">RSVP free</a>
   </div>
 
   <script src="https://www.eventbrite.com/static/widgets/eb_widgets.js"></script>
@@ -131,6 +222,23 @@
       iframeContainerId: 'eventbrite-widget-container-2004732345411',
       iframeContainerHeight: 520
     });
+
+    // Hide the sticky bar while the RSVP box is on screen.
+    try {
+      var bar = document.getElementById('bar');
+      new IntersectionObserver(function (e) { bar.classList.toggle('hide', e[0].isIntersecting); })
+        .observe(document.getElementById('rsvp'));
+    } catch (err) {}
+
+    // iPhone/Mac: .ics file. Everyone else: Google Calendar.
+    if (!/iPhone|iPad|Macintosh/.test(navigator.userAgent)) {
+      document.getElementById('cal').href = 'https://calendar.google.com/calendar/render?action=TEMPLATE'
+        + '&text=' + encodeURIComponent('A Porch Light Posada')
+        + '&dates=20261211T023000Z/20261211T040000Z'
+        + '&details=' + encodeURIComponent('Ponche, pan dulce and games that get strangers talking. https://theporchlightapp.com/posada/')
+        + '&location=' + encodeURIComponent('Kiln Holladay, 1895 E Rodeo Walk Dr, Suite 200, Holladay, UT 84117');
+      document.getElementById('cal').target = '_blank';
+    }
   </script>
 </body>
 </html>
